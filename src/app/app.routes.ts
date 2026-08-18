@@ -3,13 +3,13 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    title: 'Danyaell Martínez | Full-Stack Engineer',
+    title: 'Danyaell Martinez | Full-Stack Engineer',
     loadComponent: () =>
       import('./home/home-page/home-page').then((module) => module.HomePageComponent),
   },
   {
     path: 'projects',
-    title: 'Projects | Danyaell Martínez',
+    title: 'Projects | Danyaell Martinez',
     loadComponent: () =>
       import('./projects/projects-page/projects-page').then(
         (module) => module.ProjectsPageComponent,
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'experience',
-    title: 'Experience | Danyaell Martínez',
+    title: 'Experience | Danyaell Martinez',
     loadComponent: () =>
       import('./experience/experience-page/experience-page').then(
         (module) => module.ExperiencePageComponent,
@@ -30,7 +30,7 @@ export const routes: Routes = [
   },
   {
     path: 'blog',
-    title: 'Blog | Danyaell Martínez',
+    title: 'Blog | Danyaell Martinez',
     loadComponent: () =>
       import('./blog/blog-page/blog-page').then((module) => module.BlogPageComponent),
   },
@@ -41,7 +41,7 @@ export const routes: Routes = [
   },
   {
     path: 'contact',
-    title: 'Contact | Danyaell Martínez',
+    title: 'Contact | Danyaell Martinez',
     loadComponent: () =>
       import('./contact/contact-page/contact-page').then((module) => module.ContactPageComponent),
   },

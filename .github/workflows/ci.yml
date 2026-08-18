@@ -1,4 +1,4 @@
-name: CI - Danyaell Portfolio
+name: CI - Portfolio
 
 on:
   push:
@@ -48,4 +48,4 @@ jobs:
         run: npm run build
 
       - name: Verify prerendered article
-        run: test -f dist/danyaell-portfolio/browser/blog/why-i-built-maverick-labs/index.html
+        run: test -f dist/portfolio/browser/blog/why-i-built-maverick-labs/index.html

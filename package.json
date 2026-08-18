@@ -1,5 +1,5 @@
 {
-  "name": "danyaell-portfolio",
+  "name": "portfolio",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -15,7 +15,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "watch": "ng build --watch --configuration development",
-    "serve:ssr:danyaell-portfolio": "node dist/danyaell-portfolio/server/server.mjs",
+    "serve:ssr:portfolio": "node dist/portfolio/server/server.mjs",
     "validate": "npm run content:generate && npm run lint && npm run format:check && npm run test:ci && npm run build"
   },
   "private": true,

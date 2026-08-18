@@ -1,14 +1,14 @@
 ---
-title: "Why I built Maverick Labs"
-slug: "why-i-built-maverick-labs"
-summary: "How I designed a route-planning application for the Mega Man X series."
-publishedAt: "2026-08-17"
+title: 'Why I built Maverick Labs'
+slug: 'why-i-built-maverick-labs'
+summary: 'How I designed a route-planning application for the Mega Man X series.'
+publishedAt: '2026-08-17'
 tags:
   - Java
   - Spring Boot
   - React
   - System Design
-githubUrl: "https://github.com/Danyaell/maverick-labs-be"
+githubUrl: 'https://github.com/Danyaell/maverick-labs-be'
 draft: false
 ---
 
