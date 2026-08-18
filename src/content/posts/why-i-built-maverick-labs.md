@@ -8,7 +8,7 @@ tags:
   - Spring Boot
   - React
   - System Design
-githubUrl: "https://github.com/Danos/maverick-labs-be"
+githubUrl: "https://github.com/Danyaell/maverick-labs-be"
 draft: false
 ---
 
