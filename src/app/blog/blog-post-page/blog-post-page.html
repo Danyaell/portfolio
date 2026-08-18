@@ -1,36 +1,38 @@
 @if (post(); as article) {
-  <article class="mx-auto max-w-3xl px-6 py-16">
-    <header class="mb-12">
-      <p class="text-sm text-zinc-500">
-        <time [attr.datetime]="article.publishedAt">
-          {{ article.publishedAt }}
-        </time>
-      </p>
+  <div class="site-container">
+    <article class="mx-auto max-w-3xl py-16 md:py-16">
+      <header class="mb-12">
+        <p class="text-secondary text-ink-muted">
+          <time [attr.datetime]="article.publishedAt">
+            {{ article.publishedAt }}
+          </time>
+        </p>
 
-      <h1 class="mt-3 text-4xl font-bold tracking-tight text-zinc-950">
-        {{ article.title }}
-      </h1>
+        <h1 class="mt-3 text-heading-1 font-bold tracking-tight text-ink">
+          {{ article.title }}
+        </h1>
 
-      <p class="mt-5 text-lg leading-8 text-zinc-600">
-        {{ article.summary }}
-      </p>
-    </header>
+        <p class="mt-5 text-lead text-ink-muted">
+          {{ article.summary }}
+        </p>
+      </header>
 
-    <div class="prose prose-zinc max-w-none" [innerHTML]="article.html"></div>
+      <div class="prose prose-midnight max-w-none" [innerHTML]="article.html"></div>
 
-    @if (article.githubUrl) {
-      <footer class="mt-12 border-t border-zinc-200 pt-6">
-        <a
-          class="text-brand-600 font-medium hover:underline"
-          [href]="article.githubUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View related code on GitHub
-        </a>
-      </footer>
-    }
-  </article>
+      @if (article.githubUrl) {
+        <footer class="mt-12 border-t border-border pt-6">
+          <a
+            class="text-brand-violet font-medium hover:underline"
+            [href]="article.githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View related code on GitHub
+          </a>
+        </footer>
+      }
+    </article>
+  </div>
 } @else {
   <section class="mx-auto max-w-3xl px-6 py-16">
     <h1 class="text-3xl font-bold">Article not found</h1>
