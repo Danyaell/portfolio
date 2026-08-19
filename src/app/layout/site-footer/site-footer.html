@@ -1,1 +1,11 @@
-<p>site-footer works!</p>
+<footer>
+  <nav aria-label="Footer navigation">
+    <ul>
+      @for (item of navigationItems; track item.path) {
+        <li>
+          <a [routerLink]="item.path">{{ item.label }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+</footer>

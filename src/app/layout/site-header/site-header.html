@@ -1,1 +1,11 @@
-<p>site-header works!</p>
+<header>
+  <nav aria-label="Primary navigation">
+    <ul>
+      @for (item of navigationItems; track item.path) {
+        <li>
+          <a [routerLink]="item.path">{{ item.label }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+</header>

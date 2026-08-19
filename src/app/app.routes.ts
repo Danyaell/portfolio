@@ -30,7 +30,7 @@ export const routes: Routes = [
   },
   {
     path: 'blog',
-    title: 'Blog | Danyaell Martinez',
+    title: 'Writing | Danyaell Martinez',
     loadComponent: () =>
       import('./blog/blog-page/blog-page').then((module) => module.BlogPageComponent),
   },
