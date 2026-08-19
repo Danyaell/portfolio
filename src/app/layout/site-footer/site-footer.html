@@ -1,11 +1,67 @@
 <footer>
-  <nav aria-label="Footer navigation">
-    <ul>
-      @for (item of navigationItems; track item.path) {
-        <li>
-          <a [routerLink]="item.path">{{ item.label }}</a>
-        </li>
+  <div class="site-container">
+    <div class="grid gap-8 py-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-12 md:py-10">
+      <div class="max-w-lg">
+        <p class="font-semibold tracking-[-0.02em] text-ink">Danyaell Martinez Ortiz</p>
+
+        <p class="mt-1 text-secondary font-medium text-brand-violet">Full-Stack Engineer</p>
+
+        <p class="mt-3 max-w-md text-secondary text-ink-muted">
+          I build reliable web products with Java, Angular, and React.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-4 md:items-end">
+        <nav aria-label="Footer navigation">
+          <ul class="flex flex-wrap gap-x-5 gap-y-1 md:justify-end">
+            @for (item of navigationItems; track item.path) {
+              <li>
+                <a
+                  [routerLink]="item.path"
+                  class="inline-flex min-h-11 items-center text-secondary font-medium text-ink-muted transition-colors duration-fast hover:text-brand-violet sm:min-h-0 sm:py-1"
+                >
+                  {{ item.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+
+        <nav aria-label="Social profiles">
+          <ul class="flex flex-wrap gap-x-5 gap-y-1 md:justify-end">
+            @for (link of socialLinks; track link.href) {
+              <li>
+                <a
+                  [href]="link.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex min-h-11 items-center gap-1.5 text-secondary font-semibold text-ink transition-colors duration-fast hover:text-brand-violet sm:min-h-0 sm:py-1"
+                >
+                  <span>{{ link.label }}</span>
+                  <span aria-hidden="true">↗</span>
+                  <span class="sr-only">— opens in a new tab</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col gap-3 border-t border-border py-4 text-secondary text-ink-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>&copy; {{ currentYear }} Danyaell Martinez Ortiz.</p>
+
+      @if (availabilityMessage) {
+        <a
+          routerLink="/contact"
+          class="inline-flex min-h-11 items-center gap-2 font-medium text-ink-muted transition-colors duration-fast hover:text-brand-violet sm:min-h-0"
+        >
+          <span aria-hidden="true" class="size-1.5 rounded-full bg-brand-violet"></span>
+          <span>{{ availabilityMessage }}</span>
+        </a>
       }
-    </ul>
-  </nav>
+    </div>
+  </div>
 </footer>
