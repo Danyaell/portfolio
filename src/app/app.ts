@@ -9,5 +9,4 @@ import { SiteFooterComponent } from './layout/site-footer/site-footer';
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
-export class App {
-}
+export class App {}

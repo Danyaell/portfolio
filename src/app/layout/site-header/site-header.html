@@ -1,11 +1,97 @@
-<header>
-  <nav aria-label="Primary navigation">
-    <ul>
-      @for (item of navigationItems; track item.path) {
-        <li>
-          <a [routerLink]="item.path">{{ item.label }}</a>
-        </li>
+<header
+  class="sticky top-0 z-50 border-b border-border bg-surface/90 md:border-none md:bg-transparent backdrop-blur-md"
+>
+  <!-- border-b border-border bg-surface/90 -->
+  <div class="site-container flex h-header items-center justify-between gap-4">
+    <a
+      routerLink="/"
+      aria-label="Danyaell, home"
+      class="inline-flex min-h-11 items-center rounded-button text-xl font-semibold tracking-[-0.03em] text-ink transition-colors duration-fast hover:text-brand-violet"
+      (click)="closeMenu()"
+    >
+      <span>Danyaell</span>
+      <span aria-hidden="true" class="text-gradient-brand">.</span>
+    </a>
+
+    <button
+      #menuButton
+      type="button"
+      aria-controls="primary-navigation"
+      class="inline-flex size-11 items-center justify-center rounded-button border border-border-strong text-ink transition-colors duration-fast hover:bg-surface-raised md:hidden"
+      [attr.aria-expanded]="isMenuOpen()"
+      [attr.aria-label]="isMenuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
+      (click)="toggleMenu()"
+    >
+      @if (isMenuOpen()) {
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 24 24"
+          class="size-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+        >
+          <path d="M6 6 18 18M18 6 6 18" />
+        </svg>
+      } @else {
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 24 24"
+          class="size-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
       }
-    </ul>
-  </nav>
+    </button>
+
+    <nav
+      id="primary-navigation"
+      aria-label="Primary navigation"
+      class="absolute inset-x-0 top-full border-b border-border bg-surface/95 backdrop-blur-md md:static md:block md:border-0 md:bg-transparent md:backdrop-blur-none"
+      [class.hidden]="!isMenuOpen()"
+    >
+      <ul
+        class="site-container flex flex-col gap-1 py-3 md:m-0 md:w-auto md:max-w-none md:flex-row md:items-center md:p-0"
+      >
+        @for (item of navigationItems; track item.path) {
+          <li>
+            <a
+              #linkActive="routerLinkActive"
+              routerLinkActive
+              ariaCurrentWhenActive="page"
+              class="relative flex min-h-11 items-center rounded-button px-4 text-secondary font-medium transition-colors duration-fast hover:bg-surface-raised hover:text-ink md:min-h-0 md:px-3 md:py-2 md:hover:bg-transparent"
+              [routerLink]="item.path"
+              [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+              [class.text-brand-violet]="linkActive.isActive"
+              [class.text-ink-muted]="!linkActive.isActive"
+              (click)="closeMenu()"
+            >
+              <span>{{ item.label }}</span>
+
+              <span
+                aria-hidden="true"
+                class="absolute inset-y-2 left-0 w-0.5 rounded-full bg-brand-violet transition-opacity duration-fast md:hidden"
+                [class.opacity-100]="linkActive.isActive"
+                [class.opacity-0]="!linkActive.isActive"
+              ></span>
+
+              <span
+                aria-hidden="true"
+                class="absolute inset-x-3 bottom-1 hidden h-px origin-center bg-gradient-to-r from-brand-violet to-brand-blue transition-transform duration-fast md:block"
+                [class.scale-x-100]="linkActive.isActive"
+                [class.scale-x-0]="!linkActive.isActive"
+              ></span>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
 </header>
