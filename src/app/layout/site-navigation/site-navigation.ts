@@ -25,3 +25,18 @@ export const SITE_NAVIGATION_ITEMS = [
     path: '/contact',
   },
 ] as const satisfies readonly SiteNavigationItem[];
+
+export const SOCIAL_LINKS = [
+    {
+      label: 'GitHub',
+      path: 'https://github.com/Danyaell',
+    },
+    {
+      label: 'LinkedIn',
+      path: 'https://www.linkedin.com/in/danyaell-martinez-ortiz',
+    },
+    {
+      label: 'Leetcode',
+      path: 'https://leetcode.com/u/Danyaell/',
+    },
+  ] as const satisfies readonly SiteNavigationItem[];
