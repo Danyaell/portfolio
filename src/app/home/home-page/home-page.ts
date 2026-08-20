@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomeHeroComponent } from "../home-hero/home-hero";
+import { HomeHeroComponent } from '../home-hero/home-hero';
 
 @Component({
   selector: 'dml-home-page',
