@@ -33,6 +33,10 @@ const SITE_LINKS = [
     label: 'LinkedIn↗— opens in a new tab',
     path: 'https://www.linkedin.com/in/danyaell-martinez-ortiz',
   },
+  {
+    label: 'Leetcode↗— opens in a new tab',
+    path: 'https://leetcode.com/u/Danyaell/',
+  },
 ] as const satisfies readonly SiteNavigationItem[];
 
 describe('SiteFooterComponent', () => {

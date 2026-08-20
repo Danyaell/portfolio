@@ -212,6 +212,7 @@
 }
 
 @utility site-container {
+  box-sizing: border-box;
   width: 100%;
   max-width: var(--ds-layout-max-width);
   margin-inline: auto;

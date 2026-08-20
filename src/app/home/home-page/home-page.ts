@@ -5,5 +5,8 @@ import { HomeHeroComponent } from '../home-hero/home-hero';
   selector: 'dml-home-page',
   imports: [HomeHeroComponent],
   templateUrl: './home-page.html',
+  host: {
+    class: 'block w-full',
+  },
 })
 export class HomePageComponent {}

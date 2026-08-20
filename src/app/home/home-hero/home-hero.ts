@@ -6,6 +6,9 @@ import { SOCIAL_LINKS } from '../../layout/site-navigation/site-navigation';
   selector: 'dml-home-hero',
   imports: [RouterLink],
   templateUrl: './home-hero.html',
+  host: {
+    class: 'block w-full',
+  },
 })
 export class HomeHeroComponent {
   protected readonly socialLinks = SOCIAL_LINKS;
