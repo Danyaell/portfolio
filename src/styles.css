@@ -218,6 +218,14 @@
   padding-inline: var(--ds-layout-gutter);
 }
 
+@utility card-container {
+  background-color: var(--color-surface-raised);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
 @utility duration-fast {
   transition-duration: var(--ds-duration-fast);
 }
