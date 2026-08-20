@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { HomeHeroComponent } from "../home-hero/home-hero";
 
 @Component({
   selector: 'dml-home-page',
-  imports: [RouterLink],
+  imports: [HomeHeroComponent],
   templateUrl: './home-page.html',
 })
 export class HomePageComponent {}

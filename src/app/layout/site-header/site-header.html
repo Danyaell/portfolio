@@ -68,7 +68,7 @@
               class="relative flex min-h-11 items-center rounded-button px-4 text-secondary font-medium transition-colors duration-fast hover:bg-surface-raised hover:text-ink md:min-h-0 md:px-3 md:py-2 md:hover:bg-transparent"
               [routerLink]="item.path"
               [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-              [class.text-brand-violet]="linkActive.isActive"
+              [class.text-gradient-brand]="linkActive.isActive"
               [class.text-ink-muted]="!linkActive.isActive"
               (click)="closeMenu()"
             >
@@ -83,7 +83,7 @@
 
               <span
                 aria-hidden="true"
-                class="absolute inset-x-3 bottom-1 hidden h-px origin-center bg-gradient-to-r from-brand-violet to-brand-blue transition-transform duration-fast md:block"
+                class="absolute inset-x-3 bottom-1 hidden h-px origin-center bg-linear-to-r from-brand-violet to-brand-blue transition-transform duration-fast md:block"
                 [class.scale-x-100]="linkActive.isActive"
                 [class.scale-x-0]="!linkActive.isActive"
               ></span>
