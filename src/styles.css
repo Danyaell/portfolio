@@ -67,6 +67,24 @@
 
   --ds-color-focus: #93c5fd;
 
+  /* Feedback */
+  --ds-color-success: #6ee7a8;
+  --ds-color-success-surface: #102a24;
+  --ds-color-success-border: #3a8f72;
+
+  --ds-color-error: #ff8a9a;
+  --ds-color-error-surface: #32151e;
+  --ds-color-error-border: #b4536a;
+
+  --ds-color-warning: #f6c76b;
+  --ds-color-warning-surface: #302614;
+  --ds-color-warning-border: #9b7734;
+
+  /* Disabled */
+  --ds-color-disabled-surface: #1a2033;
+  --ds-color-disabled-border: #313a58;
+  --ds-color-disabled-ink: #78829d;
+
   /* Shape */
   --ds-radius-card: 1rem;
   --ds-radius-button: 0.75rem;
@@ -126,6 +144,24 @@
   --color-action-active: var(--ds-color-action-active);
 
   --color-focus: var(--ds-color-focus);
+
+  --color-success: var(--ds-color-success);
+  --color-success-surface: var(--ds-color-success-surface);
+  --color-success-border: var(--ds-color-success-border);
+
+  --color-error: var(--ds-color-error);
+  --color-error-surface: var(--ds-color-error-surface);
+  --color-error-border: var(--ds-color-error-border);
+
+  --color-warning: var(--ds-color-warning);
+  --color-warning-surface: var(--ds-color-warning-surface);
+  --color-warning-border: var(--ds-color-warning-border);
+
+  --color-disabled-surface: var(--ds-color-disabled-surface);
+  --color-disabled-border: var(--ds-color-disabled-border);
+  --color-disabled-ink: var(--ds-color-disabled-ink);
+
+  --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
   /* Fluid typography */
   --text-display: var(--ds-type-display-size);
