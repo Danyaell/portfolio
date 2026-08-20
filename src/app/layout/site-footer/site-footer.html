@@ -29,10 +29,10 @@
 
         <nav aria-label="Social profiles">
           <ul class="flex flex-wrap gap-x-5 gap-y-1 md:justify-end">
-            @for (link of socialLinks; track link.href) {
+            @for (link of socialLinks; track link.path) {
               <li>
                 <a
-                  [href]="link.href"
+                  [href]="link.path"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex min-h-11 items-center gap-1.5 text-secondary font-semibold text-ink transition-colors duration-fast hover:text-brand-violet sm:min-h-0 sm:py-1"

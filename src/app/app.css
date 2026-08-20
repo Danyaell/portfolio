@@ -1,11 +1,33 @@
 :host {
-  display: flex;
+  display: block;
+  width: 100%;
   min-height: 100dvh;
-  flex-direction: column;
 }
 
-main {
-  flex: 1;
-  padding: var(--ds-layout-gutter);
-  max-width: var(--ds-layout-max-width);
+.app-ambient {
+  background-image:
+    radial-gradient(
+      42rem circle at var(--pointer-x) var(--pointer-y),
+      color-mix(in srgb, var(--ds-color-brand-violet) 9%, transparent),
+      color-mix(in srgb, var(--ds-color-brand-blue) 4%, transparent) 40%,
+      transparent 72%
+    ),
+    radial-gradient(
+      36rem circle at 78vw 18vh,
+      color-mix(in srgb, var(--ds-color-brand-blue) 5%, transparent),
+      transparent 72%
+    );
+}
+
+.app-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ds-color-ink) 2%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--ds-color-ink) 2%, transparent) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+  opacity: 0.5;
 }
