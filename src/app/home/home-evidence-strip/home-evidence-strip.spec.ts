@@ -29,10 +29,14 @@ describe('HomeEvidenceStripComponent', () => {
   it('should render the expected evidence', () => {
     const text = fixture.nativeElement.textContent;
 
-    expect(text).toContain('4+ years');
+    expect(text).toContain('Professional evidence');
+    expect(text).toContain('5+ years');
+    expect(text).toContain('Building production software');
     expect(text).toContain('Fintech and retail media');
+    expect(text).toContain('Experience  Java/Spring Boot');
     expect(text).toContain('Java/Spring Boot');
     expect(text).toContain('Cloud delivery');
+    expect(text).toContain('CI/CD');
   });
 
   it('should associate the section with its heading', () => {
