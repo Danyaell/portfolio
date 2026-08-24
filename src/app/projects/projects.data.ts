@@ -10,14 +10,12 @@ export const PROJECTS = [
     stack: ['Java 21', 'Spring Boot', 'MySQL', 'Flyway', 'Testcontainers', 'React', 'TypeScript'],
     highlights: [
       'Rule-based route difficulty and backtracking analysis.',
-      'Spring Boot, MySQL, Flyway and Testcontainers.',
-      'React, TypeScript and accessible drag-and-drop interactions.',
+      'Accessible UX/UI and interactions.',
       'CI/CD deployments through Railway and Vercel.',
     ],
     featured: true,
     coverImage: '/images/projects/maverick-labs.webp',
-    coverImageAlt:
-      'Maverick Labs route builder showing a Mega Man X boss order and route analysis.',
+    coverImageAlt: 'Maverick Labs route builder.',
     liveUrl: 'https://maverick-labs-fe.vercel.app',
     repositories: [
       {
@@ -37,15 +35,10 @@ export const PROJECTS = [
       'A statically generated Angular portfolio with a semantic design system, local Markdown content and automated validation.',
     role: 'Creator and Frontend Engineer',
     stack: ['Angular 22', 'TypeScript', 'Tailwind CSS 4', 'Angular SSG', 'Markdown'],
-    highlights: [
-      'Angular 22 standalone architecture.',
-      'Tailwind 4 semantic design tokens.',
-      'Markdown-to-SSG content pipeline.',
-      'GitHub Actions validation.',
-    ],
+    highlights: ['Markdown-to-SSG content pipeline.', 'GitHub Actions validation.'],
     featured: true,
     coverImage: '/images/projects/portfolio.webp',
-    coverImageAlt: 'Danyaell Martínez portfolio home page using the Midnight Violet design system.',
+    coverImageAlt: 'Danyaell Martinez portfolio home page using the Midnight Violet design system.',
     repositories: [
       {
         label: 'Project repository',
