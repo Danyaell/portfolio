@@ -1,0 +1,48 @@
+<section aria-labelledby="engineering-capabilities-title" class="w-full">
+  <div class="site-container pb-16 md:pb-20 lg:pb-24">
+    <div class="max-w-2xl">
+      <h2 id="engineering-capabilities-title">Engineering stack</h2>
+
+      <p class="mt-3 text-ink-muted">
+        Technologies & Tools I use daily to build fast, scalable, and reliable products.
+      </p>
+    </div>
+
+    <ul
+      aria-label="Engineering capability areas"
+      class="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-6"
+    >
+      @for (area of engineeringAreas; track area.title) {
+        <li class="min-w-0">
+          <article
+            class="flex h-full flex-col rounded-card border border-border bg-surface/60 p-5 backdrop-blur-sm md:p-6"
+          >
+            <h3>
+              {{ area.title }}
+            </h3>
+
+            <p class="mt-3 text-ink-muted">
+              {{ area.description }}
+            </p>
+
+            <ul
+              [attr.aria-label]="area.title + ' technologies and practices'"
+              class="mt-6 space-y-2 border-t border-border/70 pt-5"
+            >
+              @for (capability of area.capabilities; track capability) {
+                <li class="flex items-start gap-3 text-secondary text-ink-muted">
+                  <span
+                    aria-hidden="true"
+                    class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-brand-violet"
+                  ></span>
+
+                  <span>{{ capability }}</span>
+                </li>
+              }
+            </ul>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
