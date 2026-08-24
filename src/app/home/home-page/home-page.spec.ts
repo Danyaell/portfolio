@@ -15,10 +15,19 @@ describe('HomePageComponent', () => {
 
     fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
+
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the hero followed by the evidence strip', () => {
+    const children = Array.from(fixture.nativeElement.children) as HTMLElement[];
+
+    expect(children[0]?.tagName.toLowerCase()).toBe('dml-home-hero');
+    expect(children[1]?.tagName.toLowerCase()).toBe('dml-home-evidence-strip');
   });
 });
