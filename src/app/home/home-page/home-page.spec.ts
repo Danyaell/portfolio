@@ -24,10 +24,17 @@ describe('HomePageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the hero followed by the evidence strip', () => {
+  it('should render the Home sections in order', () => {
     const children = Array.from(fixture.nativeElement.children) as HTMLElement[];
 
     expect(children[0]?.tagName.toLowerCase()).toBe('dml-home-hero');
+
     expect(children[1]?.tagName.toLowerCase()).toBe('dml-home-evidence-strip');
+
+    expect(children[2]?.tagName.toLowerCase()).toBe('dml-home-featured-projects');
+  });
+
+  it('should contain exactly one level-one heading', () => {
+    expect(fixture.nativeElement.querySelectorAll('h1')).toHaveLength(1);
   });
 });
