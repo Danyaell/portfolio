@@ -4,6 +4,7 @@ import { provideRouter, Router } from '@angular/router';
 import { SITE_NAVIGATION_ITEMS } from '../site-navigation/site-navigation';
 import { SiteHeaderComponent } from './site-header';
 import { Component } from '@angular/core';
+import { expectNoAxeViolations } from '../../../testing/axe';
 
 @Component({
   template: '',
@@ -134,5 +135,36 @@ describe('SiteHeaderComponent', () => {
 
     expect(button.getAttribute('aria-expanded')).toBe('false');
     expect(document.activeElement).toBe(button);
+  });
+
+  it('should remain accessible when the menu changes state', async () => {
+    const button: HTMLButtonElement = fixture.nativeElement.querySelector(
+      'button[aria-controls="primary-navigation"]',
+    );
+
+    await expectNoAxeViolations(fixture.nativeElement);
+
+    button.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+
+    await expectNoAxeViolations(fixture.nativeElement);
+
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+      }),
+    );
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+    expect(document.activeElement).toBe(button);
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

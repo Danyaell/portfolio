@@ -7,9 +7,11 @@ import {
   NgZone,
   viewChild,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SiteHeaderComponent } from './layout/site-header/site-header';
 import { SiteFooterComponent } from './layout/site-footer/site-footer';
+import { filter } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'dml-root',
@@ -25,9 +27,28 @@ export class App {
 
   private readonly appShell = viewChild<ElementRef<HTMLElement>>('appShell');
 
+  private readonly router = inject(Router);
+
+  private readonly mainContent = viewChild<ElementRef<HTMLElement>>('mainContent');
+
+  private hasCompletedInitialNavigation = false;
+
   constructor() {
     afterNextRender(() => {
       this.initializePointerEffect();
+      this.router.events
+        .pipe(
+          filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+          takeUntilDestroyed(this.destroyRef),
+        )
+        .subscribe(() => {
+          if (!this.hasCompletedInitialNavigation) {
+            this.hasCompletedInitialNavigation = true;
+            return;
+          }
+
+          this.mainContent()?.nativeElement.focus();
+        });
     });
   }
 

@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { SOCIAL_LINKS } from '../../layout/site-navigation/site-navigation';
 import { HomeContactCtaComponent } from './home-contact-cta';
+import { expectNoAxeViolations } from '../../../testing/axe';
 
 describe('HomeContactCtaComponent', () => {
   let fixture: ComponentFixture<HomeContactCtaComponent>;
@@ -65,5 +66,9 @@ describe('HomeContactCtaComponent', () => {
 
   it('should not contain a form', () => {
     expect(fixture.nativeElement.querySelector('form')).toBeNull();
+  });
+
+  it('should have no detectable accessibility violations', async () => {
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });
