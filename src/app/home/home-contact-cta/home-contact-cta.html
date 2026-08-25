@@ -1,0 +1,38 @@
+<section aria-labelledby="home-contact-title" class="w-full">
+  <div class="site-container pb-12 md:pb-16 lg:pb-20">
+    <div
+      class="flex flex-col gap-8 border-y border-border/70 py-10 md:py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-12"
+    >
+      <div class="max-w-2xl">
+        <h2 id="home-contact-title">Let’s build something useful.</h2>
+
+        <p class="mt-4 text-lead text-ink-muted">
+          I’m currently open to full-stack opportunities where I can contribute across product,
+          frontend, backend, and delivery.
+        </p>
+      </div>
+
+      <div class="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+        <a
+          routerLink="/contact"
+          class="inline-flex min-h-11 items-center justify-center rounded-button border border-transparent bg-action px-4 py-2.5 font-semibold text-ink transition-[background-color,box-shadow,transform] duration-ui ease-standard hover:bg-action-hover hover:shadow-card active:translate-y-px active:bg-action-active active:shadow-none"
+        >
+          Get in touch
+        </a>
+
+        @if (linkedInProfile; as linkedIn) {
+          <a
+            [href]="linkedIn.path"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center justify-center rounded-button border border-border-strong bg-transparent px-4 py-2.5 font-semibold text-ink transition-[color,background-color,border-color,transform] duration-ui ease-standard hover:border-brand-blue hover:bg-surface-raised active:translate-y-px active:bg-surface"
+          >
+            Connect on LinkedIn
+            <span aria-hidden="true" class="ml-1">↗</span>
+            <span class="sr-only"> — opens in a new tab </span>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>
