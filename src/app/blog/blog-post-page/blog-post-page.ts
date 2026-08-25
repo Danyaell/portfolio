@@ -1,9 +1,10 @@
 import { Component, computed, input } from '@angular/core';
 import { BLOG_POSTS } from '../../generated/blog-posts';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'dml-blog-post-page',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './blog-post-page.html',
 })
 export class BlogPostPageComponent {

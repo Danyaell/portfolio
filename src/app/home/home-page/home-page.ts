@@ -5,6 +5,7 @@ import { HomeEvidenceStripComponent } from '../home-evidence-strip/home-evidence
 import { HomeFeaturedProjectsComponent } from '../home-featured-projects/home-featured-projects';
 import { HomeHeroComponent } from '../home-hero/home-hero';
 import { HomeExperiencePreviewComponent } from '../home-experience-preview/home-experience-preview';
+import { HomeWritingPreviewComponent } from '../home-writing-peview/home-writing-preview';
 
 @Component({
   selector: 'dml-home-page',
@@ -14,6 +15,7 @@ import { HomeExperiencePreviewComponent } from '../home-experience-preview/home-
     HomeFeaturedProjectsComponent,
     HomeEngineeringCapabilitiesComponent,
     HomeExperiencePreviewComponent,
+    HomeWritingPreviewComponent,
   ],
   templateUrl: './home-page.html',
   host: {

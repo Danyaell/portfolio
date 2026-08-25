@@ -11,6 +11,7 @@ tags:
 githubUrl: 'https://github.com/Danyaell/maverick-labs-be'
 draft: false
 ---
+
 Maverick Labs started as a way to combine one of my favorite game series with a real full-stack engineering problem.
 
 ## The problem
@@ -52,7 +53,6 @@ The API follows controller, service, and repository boundaries. Controllers defi
 DTOs separate the public API from the JPA entities, preventing internal database identifiers and persistence details from leaking into the client. MySQL stores the normalized relationships between games, stages, bosses, weapons, collectibles, and requirements, while Flyway acts as the source of truth for schema changes and reference data.
 
 This separation allowed the frontend to focus on interaction and feedback while the backend remained responsible for producing deterministic, testable analysis results.
-
 
 ## Modeling route analysis
 
