@@ -1,0 +1,110 @@
+import type { ProfessionalExperience } from './experience.model';
+
+export const EXPERIENCES = [
+  {
+    company: 'Universidad Nacional Autónoma de México (UNAM) | FES Aragón',
+    engagementType: 'Institutional Project',
+    role: 'Software Engineer',
+    period: 'May 2026 – Aug 2026',
+    location: 'Nezahualcóyotl, State of Mexico, Mexico',
+    summary:
+      'Maintained computer-lab hardware and software infrastructure and designed, built and deployed CAE Service Hub, replacing paper-based support workflows with a role-based web application.',
+    achievements: [
+      'Maintained computer-lab workstations and software environments, including operating systems, required applications and development runtimes such as Python and Node.js.',
+      'Identified limitations in paper-based software installation and equipment incident workflows and proposed a centralized digital system.',
+      'Designed and built CAE Service Hub with role-based access for students, faculty, technicians and administrators.',
+      'Implemented software installation requests, equipment incident reports, lost-and-found reports, task assignment, status tracking and ownership visibility.',
+      'Built the React, TypeScript and Zustand client and the Node.js, Express and MongoDB REST API, then deployed a production instance for use at FES Aragón.',
+    ],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Zustand',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'REST APIs',
+    ],
+    featured: true,
+  },
+  {
+    company: 'Tech Mahindra',
+    client: '84.51° / Kroger Ad Platform',
+    engagementType: 'Employment',
+    role: 'Full-Stack Developer',
+    period: 'Mar 2025 – May 2026',
+    location: 'Remote · Mexico City, Mexico',
+    summary:
+      'Built production capabilities for Kroger’s retail media platform across frontend and backend development.',
+    achievements: [
+      'Developed Creative Advertising workflows with Angular, TypeScript, RxJS and Signals.',
+      'Partnered with product, UX, backend and data science teams to translate advertising requirements into end-to-end technical solutions.',
+      'Contributed to Java and Spring Boot backend development as part of full-stack feature delivery.',
+      'Supported reliable production delivery through automated testing, code review and cross-team release coordination.',
+    ],
+    technologies: ['Angular', 'TypeScript', 'RxJS', 'Signals', 'Java', 'Spring Boot', 'REST APIs'],
+    featured: true,
+  },
+  {
+    company: 'Tech Mahindra',
+    client: 'Scotiabank',
+    engagementType: 'Employment',
+    role: 'Software Engineer',
+    period: 'Jan 2022 – Mar 2025',
+    location: 'Remote · Mexico City, Mexico',
+    summary:
+      'Built and supported full-stack fintech systems for banking workflows using Java, Spring Boot and frontend applications.',
+    achievements: [
+      'Contributed to a 25% reduction in production incidents through monitoring, defect resolution and reliability improvements.',
+      'Developed and supported PSE modules across Java and Spring Boot services and frontend applications.',
+      'Integrated and monitored microservices supporting production banking workflows.',
+      'Used Jenkins and SonarQube for automated builds, code-quality analysis and monthly production releases.',
+      'Supported application delivery and infrastructure using AWS ECS and S3.',
+    ],
+    technologies: [
+      'Java',
+      'Spring Boot',
+      'REST APIs',
+      'Microservices',
+      'SQL',
+      'AWS ECS',
+      'AWS S3',
+      'Jenkins',
+      'SonarQube',
+    ],
+    featured: true,
+  },
+  {
+    company: 'Universidad Nacional Autónoma de México (UNAM) | FES Aragón',
+    client: 'Café Para Dos',
+    engagementType: 'Institutional Project',
+    role: 'Full-Stack Developer',
+    period: 'Jan 2021 – Jun 2021',
+    location: 'Nezahualcóyotl, State of Mexico, Mexico',
+    summary:
+      'Developed and deployed a full-stack web application for the “Café Para Dos” institutional project, modernizing the faculty cafeteria experience.',
+    achievements: [
+      'Built responsive frontend functionality using React, JavaScript, HTML and CSS.',
+      'Developed backend services with Node.js and MongoDB.',
+      'Delivered a production deployment for continued use by the faculty.',
+    ],
+    technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Node.js', 'MongoDB'],
+    featured: false,
+  },
+  {
+    company: 'Sistema de Transporte Colectivo Metro',
+    engagementType: 'Social Service',
+    role: 'Technical Support Intern',
+    period: 'Sep 2018 – Apr 2019',
+    location: 'Mexico City, Mexico',
+    summary:
+      'Completed a technical support internship through UNAM ENP 7, supporting equipment used by the coordination and communications teams of the Mexico City Metro.',
+    achievements: [
+      'Assisted with preventive and corrective maintenance of technical equipment used by Metro operations teams.',
+      'Provided technical support to communications personnel serving lines 1, 3, 6 and 8.',
+      'Coordinated with technical personnel to document, diagnose and resolve equipment issues.',
+    ],
+    technologies: ['Hardware Diagnostics', 'Preventive Maintenance', 'Corrective Maintenance'],
+    featured: false,
+  },
+] as const satisfies readonly ProfessionalExperience[];

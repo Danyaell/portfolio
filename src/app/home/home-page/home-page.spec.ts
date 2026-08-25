@@ -34,6 +34,8 @@ describe('HomePageComponent', () => {
     expect(children[2]?.tagName.toLowerCase()).toBe('dml-home-featured-projects');
 
     expect(children[3]?.tagName.toLowerCase()).toBe('dml-home-engineering-capabilities');
+
+    expect(children[4]?.tagName.toLowerCase()).toBe('dml-home-experience-preview');
   });
 
   it('should contain exactly one level-one heading', () => {
