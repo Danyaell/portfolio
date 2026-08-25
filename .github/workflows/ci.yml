@@ -47,5 +47,8 @@ jobs:
       - name: Build production site
         run: npm run build
 
+      - name: Verify prerendered Home
+        run: npm run verify:prerender
+
       - name: Verify prerendered article
         run: test -f dist/portfolio/browser/blog/why-i-built-maverick-labs/index.html

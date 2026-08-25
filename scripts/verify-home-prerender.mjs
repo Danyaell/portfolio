@@ -32,7 +32,52 @@ assert.equal(
 
 assert.ok(document.querySelector('meta[name="twitter:card"]'), 'Expected Twitter card metadata');
 
-assert.ok(document.querySelector('script[type="application/ld+json"]'), 'Expected Person JSON-LD');
+const structuredDataScript = document.querySelector('script#person-structured-data');
+
+assert.ok(structuredDataScript, 'Expected Person JSON-LD');
+
+const person = JSON.parse(structuredDataScript.textContent ?? '{}');
+
+assert.equal(person['@context'], 'https://schema.org');
+assert.equal(person['@type'], 'Person');
+
+assert.equal(person.name, 'Danyaell Martinez Ortiz');
+
+assert.equal(person.jobTitle, 'Full-Stack Developer');
+
+assert.deepEqual(person.sameAs, [
+  'https://github.com/Danyaell',
+  'https://www.linkedin.com/in/danyaell-martinez-ortiz',
+]);
+
+assert.equal(person.url, undefined);
+assert.equal(person['@id'], undefined);
+
+assert.equal(
+  document.querySelector('meta[property="og:description"]')?.getAttribute('content'),
+  expectedDescription,
+);
+
+assert.equal(
+  document.querySelector('meta[name="twitter:title"]')?.getAttribute('content'),
+  expectedTitle,
+);
+
+assert.equal(
+  document.querySelector('meta[name="twitter:description"]')?.getAttribute('content'),
+  expectedDescription,
+);
+
+assert.equal(
+  document.querySelector('meta[name="theme-color"]')?.getAttribute('content'),
+  '#080b16',
+);
+
+assert.equal(document.querySelectorAll('meta[name="description"]').length, 1);
+
+assert.equal(document.querySelectorAll('meta[property="og:title"]').length, 1);
+
+assert.equal(document.querySelector('meta[name="twitter:image"]'), null);
 
 const mainLinks = Array.from(main.querySelectorAll('a[href]'), (link) => link.getAttribute('href'));
 
