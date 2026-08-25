@@ -1,1 +1,70 @@
-<p>contact-page works!</p>
+<section aria-labelledby="contact-page-title" class="w-full">
+  <div class="site-container py-12 md:py-16 lg:py-20">
+    <div class="max-w-3xl">
+      <h1 id="contact-page-title">Get in touch</h1>
+
+      <p class="mt-4 text-lead text-ink-muted">
+        I’m currently open to full-stack opportunities where I can contribute across product,
+        frontend, backend, and delivery.
+      </p>
+
+      <p class="mt-4 text-ink-muted">
+        If you think my experience could be a good fit for your team, LinkedIn is the best place to
+        start a conversation. You can also review my public work on GitHub.
+      </p>
+    </div>
+
+    <ul
+      aria-label="Contact options"
+      class="mt-10 max-w-3xl divide-y divide-border/70 border-y border-border/70"
+    >
+      @if (linkedInProfile; as linkedIn) {
+        <li class="py-6">
+          <a
+            [href]="linkedIn.path"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex min-h-11 flex-col justify-center"
+          >
+            <span
+              class="font-semibold text-ink transition-colors duration-fast group-hover:text-brand-violet"
+            >
+              Connect on LinkedIn
+              <span aria-hidden="true">↗</span>
+            </span>
+
+            <span class="mt-1 text-secondary text-ink-muted">
+              Start a conversation about a role, project, or collaboration.
+            </span>
+
+            <span class="sr-only"> — opens in a new tab </span>
+          </a>
+        </li>
+      }
+
+      @if (githubProfile; as github) {
+        <li class="py-6">
+          <a
+            [href]="github.path"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex min-h-11 flex-col justify-center"
+          >
+            <span
+              class="font-semibold text-ink transition-colors duration-fast group-hover:text-brand-violet"
+            >
+              View my work on GitHub
+              <span aria-hidden="true">↗</span>
+            </span>
+
+            <span class="mt-1 text-secondary text-ink-muted">
+              Explore my repositories, architecture decisions, tests and project documentation.
+            </span>
+
+            <span class="sr-only"> — opens in a new tab </span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
