@@ -3,7 +3,14 @@ import { readFile } from 'node:fs/promises';
 
 import { JSDOM } from 'jsdom';
 
+const expectedTitle = 'Danyaell Martinez | Full-Stack Developer';
+
+const expectedDescription =
+  'Full-stack developer based in Mexico City, building reliable web products with Java, Spring Boot, Angular, React, and TypeScript.';
+
 const html = await readFile('dist/portfolio/browser/index.html', 'utf8');
+
+await readFile('dist/portfolio/browser/images/social/danyaell-martinez-og.png');
 
 const document = new JSDOM(html).window.document;
 const main = document.querySelector('main');
@@ -73,9 +80,17 @@ assert.equal(
   '#080b16',
 );
 
-assert.equal(document.querySelectorAll('meta[name="description"]').length, 1);
+assert.equal(document.title, expectedTitle);
 
-assert.equal(document.querySelectorAll('meta[property="og:title"]').length, 1);
+assert.equal(
+  document.querySelector('meta[name="description"]')?.getAttribute('content'),
+  expectedDescription,
+);
+
+assert.equal(
+  document.querySelector('meta[property="og:title"]')?.getAttribute('content'),
+  expectedTitle,
+);
 
 assert.equal(document.querySelector('meta[name="twitter:image"]'), null);
 
