@@ -1,12 +1,18 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { SITE_NAVIGATION_ITEMS } from '../../layout/site-navigation/site-navigation';
 import { RouterLink } from '@angular/router';
+
+import type { BlogPost } from '../blog-post';
+import { BLOG_POSTS } from '../../generated/blog-posts';
 
 @Component({
   selector: 'dml-blog-page',
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './blog-page.html',
+  host: {
+    class: 'block w-full',
+  },
 })
 export class BlogPageComponent {
-  protected readonly navigationItems = SITE_NAVIGATION_ITEMS;
+  protected readonly posts: readonly BlogPost[] = BLOG_POSTS;
 }
