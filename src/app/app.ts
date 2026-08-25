@@ -31,25 +31,24 @@ export class App {
 
   private readonly mainContent = viewChild<ElementRef<HTMLElement>>('mainContent');
 
-  private hasCompletedInitialNavigation = false;
-
   constructor() {
+    this.initializeNavigationFocus();
+
     afterNextRender(() => {
       this.initializePointerEffect();
-      this.router.events
-        .pipe(
-          filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-          takeUntilDestroyed(this.destroyRef),
-        )
-        .subscribe(() => {
-          if (!this.hasCompletedInitialNavigation) {
-            this.hasCompletedInitialNavigation = true;
-            return;
-          }
-
-          this.mainContent()?.nativeElement.focus();
-        });
     });
+  }
+
+  private initializeNavigationFocus(): void {
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        filter((event) => event.id > 1),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => {
+        this.mainContent()?.nativeElement.focus();
+      });
   }
 
   private initializePointerEffect(): void {

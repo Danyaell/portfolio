@@ -1,13 +1,32 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
 import { App } from './app';
 import { expectNoAxeViolations } from '../testing/axe';
+
+import { Component } from '@angular/core';
+import { provideRouter, Router } from '@angular/router';
+
+@Component({
+  template: '<h1>Test page</h1>',
+})
+class TestPageComponent {}
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([
+          {
+            path: '',
+            pathMatch: 'full',
+            component: TestPageComponent,
+          },
+          {
+            path: 'projects',
+            component: TestPageComponent,
+          },
+        ]),
+      ],
     }).compileComponents();
   });
 
@@ -57,5 +76,35 @@ describe('App', () => {
     expect(skipLink).not.toBeNull();
     expect(main).not.toBeNull();
     expect(main?.getAttribute('tabindex')).toBe('-1');
+  });
+
+  it('should focus main content after route navigation', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    /*
+     * Ensure that the initial navigation has completed.
+     * If TestBed already performed it, navigating to the
+     * current URL is effectively harmless.
+     */
+    await router.navigateByUrl('/');
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const main: HTMLElement | null = fixture.nativeElement.querySelector('#main-content');
+
+    expect(main).not.toBeNull();
+
+    await router.navigateByUrl('/projects');
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(router.url).toBe('/projects');
+    expect(document.activeElement).toBe(main);
   });
 });

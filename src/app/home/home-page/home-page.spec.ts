@@ -90,7 +90,12 @@ describe('HomePageComponent', () => {
       expect(link).toBeDefined();
       expect(link?.getAttribute('href')).toBe(expectation.href);
     }
+  });
 
+  it('should display Writing only when publishable posts exist', () => {
+    const links = Array.from(
+      fixture.nativeElement.querySelectorAll('a[href]'),
+    ) as HTMLAnchorElement[];
     const writingSection = fixture.nativeElement.querySelector(
       'section[aria-labelledby="latest-writing-title"]',
     );
@@ -103,7 +108,9 @@ describe('HomePageComponent', () => {
     } else {
       expect(writingSection).toBeNull();
     }
+  });
 
+  it('should render all important Home sections', () => {
     const requiredSectionIds = [
       'hero-title',
       'professional-evidence-title',
