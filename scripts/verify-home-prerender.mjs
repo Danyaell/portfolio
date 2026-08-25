@@ -25,17 +25,21 @@ assert.ok(heading.textContent.trim().length > 0, 'Expected a non-empty Hero h1')
 
 assert.match(main.textContent, /reliable products across the stack/i);
 
-assert.equal(document.title, 'Danyaell Martinez | Full-Stack Developer');
+assert.equal(document.title, expectedTitle);
 
 assert.equal(
   document.querySelector('meta[name="description"]')?.getAttribute('content'),
-  'Full-stack developer based in Mexico City, building reliable web products with Java, Spring Boot, Angular, React, and TypeScript.',
+  expectedDescription,
 );
 
 assert.equal(
   document.querySelector('meta[property="og:title"]')?.getAttribute('content'),
-  'Danyaell Martinez | Full-Stack Developer',
+  expectedTitle,
 );
+
+assert.equal(document.querySelectorAll('meta[name="description"]').length, 1);
+
+assert.equal(document.querySelectorAll('meta[property="og:title"]').length, 1);
 
 assert.ok(document.querySelector('meta[name="twitter:card"]'), 'Expected Twitter card metadata');
 
@@ -78,18 +82,6 @@ assert.equal(
 assert.equal(
   document.querySelector('meta[name="theme-color"]')?.getAttribute('content'),
   '#080b16',
-);
-
-assert.equal(document.title, expectedTitle);
-
-assert.equal(
-  document.querySelector('meta[name="description"]')?.getAttribute('content'),
-  expectedDescription,
-);
-
-assert.equal(
-  document.querySelector('meta[property="og:title"]')?.getAttribute('content'),
-  expectedTitle,
 );
 
 assert.equal(document.querySelector('meta[name="twitter:image"]'), null);
