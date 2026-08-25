@@ -16,7 +16,8 @@
     "format:check": "prettier --check .",
     "watch": "ng build --watch --configuration development",
     "serve:ssr:portfolio": "node dist/portfolio/server/server.mjs",
-    "validate": "npm run content:generate && npm run lint && npm run format:check && npm run test:ci && npm run build"
+    "validate": "npm run content:generate && npm run lint && npm run format:check && npm run test:ci && npm run build && npm run verify:prerender",
+    "verify:prerender": "node scripts/verify-home-prerender.mjs"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
