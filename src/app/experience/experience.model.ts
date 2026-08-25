@@ -7,7 +7,7 @@ export interface ProfessionalExperience {
   readonly period: string;
   readonly location?: string;
   readonly summary: string;
-  readonly achievements: readonly string[];
-  readonly technologies: readonly string[];
+  readonly achievements: readonly [string, ...string[]];
+  readonly technologies: readonly [string, ...string[]];
   readonly featured: boolean;
 }

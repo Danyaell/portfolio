@@ -3,7 +3,7 @@ import type { ProfessionalExperience } from './experience.model';
 export const EXPERIENCES = [
   {
     company: 'Universidad Nacional Autónoma de México (UNAM) | FES Aragón',
-    engagementType: 'Social Service',
+    engagementType: 'Institutional Project',
     role: 'Software Engineer',
     period: 'May 2026 – Aug 2026',
     location: 'Nezahualcóyotl, State of Mexico, Mexico',
@@ -31,7 +31,7 @@ export const EXPERIENCES = [
     company: 'Tech Mahindra',
     client: '84.51° / Kroger Ad Platform',
     engagementType: 'Employment',
-    role: 'Software Engineer',
+    role: 'Full-Stack Developer',
     period: 'Mar 2025 – May 2026',
     location: 'Remote · Mexico City, Mexico',
     summary:
@@ -49,16 +49,16 @@ export const EXPERIENCES = [
     company: 'Tech Mahindra',
     client: 'Scotiabank',
     engagementType: 'Employment',
-    role: 'Full-Stack Engineer',
+    role: 'Software Engineer',
     period: 'Jan 2022 – Mar 2025',
     location: 'Remote · Mexico City, Mexico',
     summary:
       'Built and supported full-stack fintech systems for banking workflows using Java, Spring Boot and frontend applications.',
     achievements: [
+      'Contributed to a 25% reduction in production incidents through monitoring, defect resolution and reliability improvements.',
       'Developed and supported PSE modules across Java and Spring Boot services and frontend applications.',
       'Integrated and monitored microservices supporting production banking workflows.',
       'Used Jenkins and SonarQube for automated builds, code-quality analysis and monthly production releases.',
-      'Contributed to a 25% reduction in production incidents through monitoring, defect resolution and reliability improvements.',
       'Supported application delivery and infrastructure using AWS ECS and S3.',
     ],
     technologies: [
@@ -80,7 +80,7 @@ export const EXPERIENCES = [
     engagementType: 'Institutional Project',
     role: 'Full-Stack Developer',
     period: 'Jan 2021 – Jun 2021',
-    location: 'Nezahualcóyotl, Mexico',
+    location: 'Nezahualcóyotl, State of Mexico, Mexico',
     summary:
       'Developed and deployed a full-stack web application for the “Café Para Dos” institutional project, modernizing the faculty cafeteria experience.',
     achievements: [
@@ -93,9 +93,9 @@ export const EXPERIENCES = [
   },
   {
     company: 'Sistema de Transporte Colectivo Metro',
-    engagementType: 'Internship',
+    engagementType: 'Social Service',
     role: 'Technical Support Intern',
-    period: 'Sept 2018 – Apr 2019',
+    period: 'Sep 2018 – Apr 2019',
     location: 'Mexico City, Mexico',
     summary:
       'Completed a technical support internship through UNAM ENP 7, supporting equipment used by the coordination and communications teams of the Mexico City Metro.',

@@ -131,7 +131,7 @@ describe('SiteFooterComponent', () => {
     const footer = fixture.nativeElement.querySelector('footer') as HTMLElement;
 
     expect(footer.textContent).toContain('Danyaell Martinez Ortiz');
-    expect(footer.textContent).toContain('Full-Stack Engineer');
+    expect(footer.textContent).toContain('Full-Stack Developer');
     expect(footer.textContent).toContain(
       'I build reliable web products with Java, Angular, and React.',
     );

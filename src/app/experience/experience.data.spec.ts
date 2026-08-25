@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { EXPERIENCES } from './experience.data';
+import { ProfessionalExperience } from './experience.model';
 
 describe('EXPERIENCES', () => {
   it('should contain professional experience entries', () => {
@@ -32,34 +33,44 @@ describe('EXPERIENCES', () => {
     }
   });
 
-  it('should contain experiences featured on Home', () => {
+  it('should use consistent abbreviated date ranges', () => {
+    const periodPattern =
+      /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} – (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}$/;
+
+    for (const experience of EXPERIENCES) {
+      expect(experience.period).toMatch(periodPattern);
+    }
+  });
+
+  it('should contain exactly three employment experiences featured on Home', () => {
     const featuredExperiences = EXPERIENCES.filter((experience) => experience.featured);
 
-    expect(featuredExperiences.length).toBeGreaterThan(0);
+    expect(featuredExperiences).toHaveLength(3);
 
     for (const experience of featuredExperiences) {
-      expect(experience.featured).toBe(true);
+      expect(['Institutional Project', 'Employment']).toContain(experience.engagementType);
     }
   });
 
   it('should include Kroger product development experience', () => {
-    const experience = EXPERIENCES.find(({ company }) => company.includes('Kroger'));
+    const experiences: readonly ProfessionalExperience[] = EXPERIENCES;
+
+    const experience = experiences.find(({ client }) => client === '84.51° / Kroger Ad Platform');
 
     expect(experience).toBeDefined();
     expect(experience?.technologies).toContain('Angular');
     expect(experience?.technologies).toContain('TypeScript');
     expect(experience?.technologies).toContain('RxJS');
     expect(experience?.technologies).toContain('Signals');
-    expect(experience?.achievements.join(' ')).toContain('Creative Advertising');
+    expect(experience?.achievements[0]).toContain('Creative Advertising');
   });
 
   it('should include the Scotiabank incident reduction', () => {
-    const experience = EXPERIENCES.find(
-      ({ company, achievements }) =>
-        company === 'Tech Mahindra' && achievements.join(' ').includes('Scotiabank'),
-    );
+    const experiences: readonly ProfessionalExperience[] = EXPERIENCES;
+
+    const experience = experiences.find(({ client }) => client === 'Scotiabank');
 
     expect(experience).toBeDefined();
-    expect(experience?.achievements.join(' ')).toContain('25% reduction');
+    expect(experience?.achievements[0]).toContain('25% reduction');
   });
 });

@@ -8,7 +8,7 @@ const PROJECT: PortfolioProject = {
   slug: 'example-project',
   name: 'Example Project',
   summary: 'A test project used to verify the featured project card.',
-  role: 'Creator and Full-Stack Engineer',
+  role: 'Creator and Full-Stack Developer',
   stack: ['Angular', 'TypeScript'],
   highlights: ['Accessible interface.', 'Automated validation.'],
   featured: true,

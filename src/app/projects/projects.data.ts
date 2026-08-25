@@ -6,7 +6,7 @@ export const PROJECTS = [
     name: 'Maverick Labs',
     summary:
       'A route-planning and analysis application for the Mega Man X series, backed by a Java and Spring Boot API with a React client.',
-    role: 'Creator and Full-Stack Engineer',
+    role: 'Creator and Full-Stack Developer',
     stack: ['Java 21', 'Spring Boot', 'MySQL', 'Flyway', 'Testcontainers', 'React', 'TypeScript'],
     highlights: [
       'Rule-based route difficulty and backtracking analysis.',
@@ -33,7 +33,7 @@ export const PROJECTS = [
     name: 'Portfolio',
     summary:
       'A statically generated Angular portfolio with a semantic design system, local Markdown content and automated validation.',
-    role: 'Creator and Frontend Engineer',
+    role: 'Creator and Frontend Developer',
     stack: ['Angular 22', 'TypeScript', 'Tailwind CSS 4', 'Angular SSG', 'Markdown'],
     highlights: ['Markdown-to-SSG content pipeline.', 'GitHub Actions validation.'],
     featured: true,
