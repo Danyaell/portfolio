@@ -26,17 +26,23 @@ export const SITE_NAVIGATION_ITEMS = [
   },
 ] as const satisfies readonly SiteNavigationItem[];
 
+export const SOCIAL_PROFILE_URLS = {
+  github: 'https://github.com/Danyaell',
+  linkedIn: 'https://www.linkedin.com/in/danyaell-martinez-ortiz',
+  leetCode: 'https://leetcode.com/u/Danyaell/',
+} as const;
+
 export const SOCIAL_LINKS = [
   {
     label: 'GitHub',
-    path: 'https://github.com/Danyaell',
+    path: SOCIAL_PROFILE_URLS.github,
   },
   {
     label: 'LinkedIn',
-    path: 'https://www.linkedin.com/in/danyaell-martinez-ortiz',
+    path: SOCIAL_PROFILE_URLS.linkedIn,
   },
   {
     label: 'Leetcode',
-    path: 'https://leetcode.com/u/Danyaell/',
+    path: SOCIAL_PROFILE_URLS.leetCode,
   },
 ] as const satisfies readonly SiteNavigationItem[];

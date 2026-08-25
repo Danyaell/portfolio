@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
+import { HOME_SEO } from './seo/seo.config';
 
 export const routes: Routes = [
   {
     path: '',
-    title: 'Danyaell Martinez | Full-Stack Developer',
+    title: HOME_SEO.title,
+    data: {
+      seo: HOME_SEO,
+    },
     loadComponent: () =>
       import('./home/home-page/home-page').then((module) => module.HomePageComponent),
   },
