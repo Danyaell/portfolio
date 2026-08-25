@@ -23,6 +23,24 @@ describe('HomeWritingPreviewComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
+  it('should omit the section when there are no publishable posts', async () => {
+    const emptyFixture = TestBed.createComponent(HomeWritingPreviewComponent);
+
+    Object.defineProperty(emptyFixture.componentInstance, 'latestPosts', {
+      configurable: true,
+      value: [],
+    });
+
+    emptyFixture.detectChanges();
+    await emptyFixture.whenStable();
+
+    expect(
+      emptyFixture.nativeElement.querySelector('section[aria-labelledby="latest-writing-title"]'),
+    ).toBeNull();
+
+    expect(emptyFixture.nativeElement.textContent).not.toContain('Coming soon');
+  });
+
   it('should render at most two latest posts', () => {
     const expectedPosts = BLOG_POSTS.slice(0, 2);
 

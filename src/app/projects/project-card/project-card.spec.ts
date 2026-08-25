@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import type { PortfolioProject } from '../project.model';
 import { ProjectCardComponent } from './project-card';
+import { expectNoAxeViolations } from '../../../testing/axe';
 
 const PROJECT: PortfolioProject = {
   slug: 'example-project',
@@ -25,6 +26,13 @@ const PROJECT: PortfolioProject = {
 describe('ProjectCardComponent', () => {
   let fixture: ComponentFixture<ProjectCardComponent>;
 
+  function renderProject(project: PortfolioProject = PROJECT): HTMLElement {
+    fixture.componentRef.setInput('project', project);
+    fixture.detectChanges();
+
+    return fixture.nativeElement;
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ProjectCardComponent],
@@ -35,16 +43,19 @@ describe('ProjectCardComponent', () => {
   });
 
   it('should render the project content', () => {
-    fixture.componentRef.setInput('project', PROJECT);
-    fixture.detectChanges();
-
-    const element: HTMLElement = fixture.nativeElement;
+    const element = renderProject();
     const image = element.querySelector('img');
 
     expect(element.querySelector('h3')?.textContent).toContain(PROJECT.name);
+
+    expect(element.textContent).toContain(PROJECT.role);
     expect(element.textContent).toContain(PROJECT.summary);
-    expect(element.textContent).toContain('Angular');
-    expect(element.textContent).toContain('Accessible interface.');
+
+    const stackItems = Array.from(
+      element.querySelectorAll(`ul[aria-label="${PROJECT.name} technology stack"] > li`),
+    ).map((item) => item.textContent?.trim());
+
+    expect(stackItems).toEqual(PROJECT.stack);
 
     expect(image?.getAttribute('src')).toBe(PROJECT.coverImage);
     expect(image?.getAttribute('alt')).toBe(PROJECT.coverImageAlt);
@@ -61,27 +72,34 @@ describe('ProjectCardComponent', () => {
     expect(link).not.toBeNull();
   });
 
-  it('should not render a live demo link when liveUrl is absent', () => {
-    fixture.componentRef.setInput('project', PROJECT);
-    fixture.detectChanges();
+  it('should omit the live demo when liveUrl is absent', () => {
+    const element = renderProject();
 
-    const externalLink = fixture.nativeElement.querySelector('a[target="_blank"]');
-
-    expect(externalLink).toBeNull();
+    expect(element.textContent).not.toContain('Live demo');
+    expect(element.querySelector('a[target="_blank"]')).toBeNull();
   });
 
-  it('should render a safe external link when liveUrl is provided', () => {
-    fixture.componentRef.setInput('project', {
+  it('should render a safe external live-demo link', () => {
+    const liveUrl = 'https://example.com/project';
+
+    const element = renderProject({
       ...PROJECT,
-      liveUrl: 'https://example.com',
+      liveUrl,
     });
 
+    const link: HTMLAnchorElement | null = element.querySelector('a[target="_blank"]');
+
+    expect(link?.getAttribute('href')).toBe(liveUrl);
+    expect(link?.getAttribute('target')).toBe('_blank');
+    expect(link?.getAttribute('rel')).toBe('noopener noreferrer');
+    expect(link?.textContent).toContain('opens in a new tab');
+  });
+
+  it('should have no detectable accessibility violations', async () => {
+    fixture.componentRef.setInput('project', PROJECT);
     fixture.detectChanges();
+    await fixture.whenStable();
 
-    const externalLink: HTMLAnchorElement | null =
-      fixture.nativeElement.querySelector('a[target="_blank"]');
-
-    expect(externalLink?.href).toBe('https://example.com/');
-    expect(externalLink?.getAttribute('rel')).toBe('noopener noreferrer');
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });
