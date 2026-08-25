@@ -1,1 +1,26 @@
-<p>projects-page works!</p>
+<section aria-labelledby="projects-page-title" class="w-full">
+  <div class="site-container py-12 md:py-16 lg:py-20">
+    <header class="max-w-3xl">
+      <h1 id="projects-page-title" class="text-display text-ink">Projects</h1>
+
+      <p class="mt-4 text-lead text-ink-muted">
+        Selected applications and engineering work where I’ve owned decisions across product,
+        frontend, backend, testing, and delivery.
+      </p>
+    </header>
+
+    @if (projects.length > 0) {
+      <section aria-labelledby="selected-work-title" class="mt-10 md:mt-12">
+        <h2 id="selected-work-title" class="text-heading text-ink">Selected work</h2>
+
+        <ul class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          @for (project of projects; track project.slug) {
+            <li class="min-w-0">
+              <dml-project-card [project]="project" />
+            </li>
+          }
+        </ul>
+      </section>
+    }
+  </div>
+</section>
