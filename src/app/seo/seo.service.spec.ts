@@ -103,11 +103,13 @@ describe('SeoService', () => {
 
     expect(meta.getTag("name='twitter:description'")?.content).toBe(HOME_SEO.description);
 
-    /*
-     * The large image card is enabled once an
-     * absolute image URL can be generated.
-     */
-    expect(meta.getTag("name='twitter:card'")?.content).toBe('summary');
+    expect(meta.getTag("name='twitter:card'")?.content).toBe('summary_large_image');
+
+    expect(meta.getTag("name='twitter:image'")?.content).toBe(
+      `${SITE_ORIGIN}${HOME_SEO.imagePath}`,
+    );
+
+    expect(meta.getTag("name='twitter:image:alt'")?.content).toBe(HOME_SEO.imageAlt);
   });
 
   it('should not duplicate metadata when applied more than once', () => {
@@ -123,21 +125,7 @@ describe('SeoService', () => {
     expect(document.head.querySelectorAll('script#person-structured-data')).toHaveLength(1);
   });
 
-  it('should omit domain-dependent metadata while the site origin is unknown', () => {
-    expect(SITE_ORIGIN).toBeNull();
-
-    service.updatePage(HOME_SEO, '/');
-
-    expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
-
-    expect(meta.getTag("property='og:url'")).toBeNull();
-
-    expect(meta.getTag("property='og:image'")).toBeNull();
-
-    expect(meta.getTag("name='twitter:image'")).toBeNull();
-  });
-
-  it('should remove stale domain-dependent metadata when the site origin is unknown', () => {
+  it('should replace stale absolute metadata with production URLs', () => {
     const canonical = document.createElement('link');
 
     canonical.rel = 'canonical';
@@ -153,31 +141,19 @@ describe('SeoService', () => {
       true,
     );
 
-    meta.addTag(
-      {
-        property: 'og:image',
-        content: 'https://preview.example.com/image.png',
-      },
-      true,
-    );
-
-    meta.addTag(
-      {
-        name: 'twitter:image',
-        content: 'https://preview.example.com/image.png',
-      },
-      true,
-    );
-
     service.updatePage(HOME_SEO, '/');
 
-    expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      `${SITE_ORIGIN}/`,
+    );
 
-    expect(meta.getTag("property='og:url'")).toBeNull();
+    expect(meta.getTag("property='og:url'")?.content).toBe(`${SITE_ORIGIN}/`);
 
-    expect(meta.getTag("property='og:image'")).toBeNull();
+    expect(meta.getTag("property='og:image'")?.content).toBe(`${SITE_ORIGIN}${HOME_SEO.imagePath}`);
 
-    expect(meta.getTag("name='twitter:image'")).toBeNull();
+    expect(meta.getTag("name='twitter:image'")?.content).toBe(
+      `${SITE_ORIGIN}${HOME_SEO.imagePath}`,
+    );
   });
 
   it('should add Person structured data', () => {
@@ -210,11 +186,11 @@ describe('SeoService', () => {
     );
 
     /*
-     * These values should not be generated until
-     * the final domain exists.
+     * Person identifiers use the configured
+     * production origin.
      */
-    expect(person.url).toBeUndefined();
-    expect(person['@id']).toBeUndefined();
+    expect(person.url).toBe(SITE_ORIGIN);
+    expect(person['@id']).toBe(`${SITE_ORIGIN}/#person`);
   });
 
   it('should remove Person structured data when the next page does not request it', () => {

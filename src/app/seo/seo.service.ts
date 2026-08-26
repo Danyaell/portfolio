@@ -81,9 +81,17 @@ export class SeoService {
 
       this.updatePropertyTag('og:image', imageUrl);
 
-      this.updatePropertyTag('og:image:width', '1200');
+      if (metadata.imageWidth !== undefined) {
+        this.updatePropertyTag('og:image:width', String(metadata.imageWidth));
+      } else {
+        this.meta.removeTag("property='og:image:width'");
+      }
 
-      this.updatePropertyTag('og:image:height', '630');
+      if (metadata.imageHeight !== undefined) {
+        this.updatePropertyTag('og:image:height', String(metadata.imageHeight));
+      } else {
+        this.meta.removeTag("property='og:image:height'");
+      }
 
       if (metadata.imageAlt) {
         this.updatePropertyTag('og:image:alt', metadata.imageAlt);

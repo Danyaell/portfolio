@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import type { PortfolioProject } from '../project.model';
 import { PROJECTS } from '../projects.data';
+import { SeoService } from '../../seo/seo.service';
 
 @Component({
   selector: 'dml-project-page',
@@ -14,9 +15,9 @@ import { PROJECTS } from '../projects.data';
   },
 })
 export class ProjectPageComponent {
+  private readonly title = inject(Title);
+  private readonly seo = inject(SeoService);
   readonly slug = input.required<string>();
-
-  private readonly documentTitle = inject(Title);
 
   protected readonly project = computed<PortfolioProject | undefined>(() =>
     PROJECTS.find((candidate) => candidate.slug === this.slug()),
@@ -25,9 +26,32 @@ export class ProjectPageComponent {
   constructor() {
     effect(() => {
       const project = this.project();
+      const routePath = `/projects/${this.slug()}`;
 
-      this.documentTitle.setTitle(
-        project ? `${project.name} | Danyaell Martinez` : 'Project not found | Danyaell Martinez',
+      if (!project) {
+        const pageTitle = 'Project not found | Danyaell Martinez';
+
+        this.title.setTitle(pageTitle);
+        this.seo.useDefaults(pageTitle, routePath);
+
+        return;
+      }
+
+      const pageTitle = `${project.name} | Danyaell Martinez`;
+
+      this.title.setTitle(pageTitle);
+
+      this.seo.updatePage(
+        {
+          title: pageTitle,
+          description: project.summary,
+          type: 'website',
+          imagePath: project.coverImage,
+          imageWidth: project.coverImageWidth,
+          imageHeight: project.coverImageHeight,
+          imageAlt: project.coverImageAlt,
+        },
+        routePath,
       );
     });
   }

@@ -5,7 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { provideRouter, type Routes, TitleStrategy } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 
-import { HOME_SEO, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from './seo.config';
+import { HOME_SEO, PROJECTS_SEO, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from './seo.config';
 import { SeoTitleStrategy } from './seo-title-strategy';
 
 @Component({
@@ -26,8 +26,6 @@ class ProjectsTestPageComponent {}
 })
 class UntitledTestPageComponent {}
 
-const PROJECTS_TITLE = 'Projects | Danyaell Martinez';
-
 const TEST_ROUTES: Routes = [
   {
     path: '',
@@ -40,7 +38,10 @@ const TEST_ROUTES: Routes = [
   {
     path: 'projects',
     component: ProjectsTestPageComponent,
-    title: PROJECTS_TITLE,
+    title: PROJECTS_SEO.title,
+    data: {
+      seo: PROJECTS_SEO,
+    },
   },
   {
     path: 'untitled',
@@ -153,20 +154,22 @@ describe('SeoTitleStrategy', () => {
     expect(document.head.querySelector('script#person-structured-data')).not.toBeNull();
   });
 
-  it('should use default metadata for a route without specific SEO data', async () => {
+  it('should apply Projects route metadata', async () => {
     const harness = await RouterTestingHarness.create();
 
     await harness.navigateByUrl('/projects');
 
-    expect(title.getTitle()).toBe(PROJECTS_TITLE);
+    expect(title.getTitle()).toBe(PROJECTS_SEO.title);
 
-    expect(meta.getTag("name='description'")?.content).toBe(SITE_DESCRIPTION);
+    expect(meta.getTag("name='description'")?.content).toBe(PROJECTS_SEO.description);
 
-    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_TITLE);
+    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_SEO.title);
 
-    expect(meta.getTag("property='og:description'")?.content).toBe(SITE_DESCRIPTION);
+    expect(meta.getTag("property='og:description'")?.content).toBe(PROJECTS_SEO.description);
 
     expect(meta.getTag("property='og:type'")?.content).toBe('website');
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(`${SITE_ORIGIN}/projects`);
 
     expect(document.head.querySelector('script#person-structured-data')).toBeNull();
   });
@@ -194,7 +197,7 @@ describe('SeoTitleStrategy', () => {
 
     expect(document.head.querySelector('script#person-structured-data')).toBeNull();
 
-    expect(title.getTitle()).toBe(PROJECTS_TITLE);
+    expect(title.getTitle()).toBe(PROJECTS_SEO.title);
   });
 
   it('should update metadata when navigating between routes', async () => {
@@ -206,11 +209,19 @@ describe('SeoTitleStrategy', () => {
 
     await harness.navigateByUrl('/projects');
 
-    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_TITLE);
+    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_SEO.title);
 
     await harness.navigateByUrl('/');
 
     expect(meta.getTag("property='og:title'")?.content).toBe(HOME_SEO.title);
+
+    expect(title.getTitle()).toBe(HOME_SEO.title);
+
+    expect(meta.getTag("name='description'")?.content).toBe(HOME_SEO.description);
+
+    expect(meta.getTag("property='og:title'")?.content).toBe(HOME_SEO.title);
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(`${SITE_ORIGIN}/`);
   });
 
   it('should not duplicate metadata after multiple navigations', async () => {
@@ -229,23 +240,5 @@ describe('SeoTitleStrategy', () => {
     expect(document.head.querySelectorAll('meta[name="twitter:title"]')).toHaveLength(1);
 
     expect(document.head.querySelectorAll('script#person-structured-data')).toHaveLength(1);
-  });
-
-  it('should omit absolute URL metadata until the final origin is configured', async () => {
-    expect(SITE_ORIGIN).toBeNull();
-
-    const harness = await RouterTestingHarness.create();
-
-    await harness.navigateByUrl('/');
-
-    expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
-
-    expect(meta.getTag("property='og:url'")).toBeNull();
-
-    expect(meta.getTag("property='og:image'")).toBeNull();
-
-    expect(meta.getTag("name='twitter:image'")).toBeNull();
-
-    expect(meta.getTag("name='twitter:card'")?.content).toBe('summary');
   });
 });

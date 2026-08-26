@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
 import { PROJECTS } from '../projects.data';
 import { ProjectPageComponent } from './project-page';
+import { SITE_ORIGIN } from '../../seo/seo.config';
 
 describe('ProjectPageComponent', () => {
   let component: ProjectPageComponent;
   let fixture: ComponentFixture<ProjectPageComponent>;
   let title: Title;
+
+  let meta: Meta;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,6 +23,7 @@ describe('ProjectPageComponent', () => {
 
     component = fixture.componentInstance;
     title = TestBed.inject(Title);
+    meta = TestBed.inject(Meta);
   });
 
   function renderSlug(slug: string): void {
@@ -158,6 +162,16 @@ describe('ProjectPageComponent', () => {
     renderSlug(PROJECTS[1].slug);
 
     expect(title.getTitle()).toContain(PROJECTS[1].name);
+
+    expect(meta.getTag("name='description'")?.content).toBe(PROJECTS[1].summary);
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(
+      `${SITE_ORIGIN}/projects/${PROJECTS[1].slug}`,
+    );
+
+    expect(meta.getTag("property='og:image'")?.content).toBe(
+      `${SITE_ORIGIN}${PROJECTS[1].coverImage}`,
+    );
   });
 
   it('should render an accessible not-found state for an unknown slug', () => {
@@ -196,5 +210,29 @@ describe('ProjectPageComponent', () => {
     renderSlug(PROJECTS[0].slug);
 
     expect(fixture.nativeElement.textContent).not.toContain('project-page works!');
+  });
+
+  it('should apply project-specific metadata', () => {
+    const project = PROJECTS[0];
+
+    renderSlug(project.slug);
+
+    expect(title.getTitle()).toBe(`${project.name} | Danyaell Martinez`);
+
+    expect(meta.getTag("name='description'")?.content).toBe(project.summary);
+
+    expect(meta.getTag("property='og:title'")?.content).toBe(`${project.name} | Danyaell Martinez`);
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(
+      `${SITE_ORIGIN}/projects/${project.slug}`,
+    );
+
+    expect(meta.getTag("property='og:image'")?.content).toBe(`${SITE_ORIGIN}${project.coverImage}`);
+
+    expect(meta.getTag("property='og:image:width'")?.content).toBe('1600');
+
+    expect(meta.getTag("property='og:image:height'")?.content).toBe('1000');
+
+    expect(meta.getTag("property='og:image:alt'")?.content).toBe(project.coverImageAlt);
   });
 });
