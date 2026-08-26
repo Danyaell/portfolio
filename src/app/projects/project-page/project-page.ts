@@ -19,8 +19,6 @@ export class ProjectPageComponent {
   private readonly seo = inject(SeoService);
   readonly slug = input.required<string>();
 
-  private readonly documentTitle = inject(Title);
-
   protected readonly project = computed<PortfolioProject | undefined>(() =>
     PROJECTS.find((candidate) => candidate.slug === this.slug()),
   );

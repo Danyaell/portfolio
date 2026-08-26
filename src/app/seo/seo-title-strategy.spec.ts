@@ -156,7 +156,7 @@ describe('SeoTitleStrategy', () => {
     expect(document.head.querySelector('script#person-structured-data')).not.toBeNull();
   });
 
-  it('should use default metadata for a route without specific SEO data', async () => {
+  it('should apply Projects route metadata', async () => {
     const harness = await RouterTestingHarness.create();
 
     await harness.navigateByUrl('/projects');
@@ -170,6 +170,8 @@ describe('SeoTitleStrategy', () => {
     expect(meta.getTag("property='og:description'")?.content).toBe(PROJECTS_SEO.description);
 
     expect(meta.getTag("property='og:type'")?.content).toBe('website');
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(`${SITE_ORIGIN}/projects`);
 
     expect(document.head.querySelector('script#person-structured-data')).toBeNull();
   });

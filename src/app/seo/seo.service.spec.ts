@@ -126,7 +126,20 @@ describe('SeoService', () => {
   });
 
   it('should replace stale absolute metadata with production URLs', () => {
-    // Crear tags de preview...
+    const canonical = document.createElement('link');
+
+    canonical.rel = 'canonical';
+    canonical.href = 'https://preview.example.com/';
+
+    document.head.appendChild(canonical);
+
+    meta.addTag(
+      {
+        property: 'og:url',
+        content: 'https://preview.example.com/',
+      },
+      true,
+    );
 
     service.updatePage(HOME_SEO, '/');
 

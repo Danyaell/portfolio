@@ -98,6 +98,11 @@ assert.equal(
   expectedSocialImageUrl,
 );
 
+assert.equal(
+  document.querySelector('meta[name="twitter:image:alt"]')?.getAttribute('content'),
+  'Danyaell Martinez, Full-Stack developer building reliable web products.',
+);
+
 const mainLinks = Array.from(main.querySelectorAll('a[href]'), (link) => link.getAttribute('href'));
 
 for (const path of ['/projects', '/experience', '/contact']) {

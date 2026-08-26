@@ -202,12 +202,23 @@ describe('ProjectPageComponent', () => {
     expect(fixture.nativeElement.textContent).not.toContain('project-page works!');
   });
 
-  it('should render title', () => {
+  it('should apply project-specific metadata', () => {
     const project = PROJECTS[0];
+
+    renderSlug(project.slug);
+
     expect(title.getTitle()).toBe(`${project.name} | Danyaell Martinez`);
 
     expect(meta.getTag("name='description'")?.content).toBe(project.summary);
 
+    expect(meta.getTag("property='og:title'")?.content).toBe(`${project.name} | Danyaell Martinez`);
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(
+      `${SITE_ORIGIN}/projects/${project.slug}`,
+    );
+
     expect(meta.getTag("property='og:image'")?.content).toBe(`${SITE_ORIGIN}${project.coverImage}`);
+
+    expect(meta.getTag("property='og:image:alt'")?.content).toBe(project.coverImageAlt);
   });
 });
