@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
 import { PROJECTS } from '../projects.data';
 import { ProjectPageComponent } from './project-page';
+import { SITE_ORIGIN } from '../../seo/seo.config';
 
 describe('ProjectPageComponent', () => {
   let component: ProjectPageComponent;
   let fixture: ComponentFixture<ProjectPageComponent>;
   let title: Title;
+
+  let meta: Meta;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,6 +23,7 @@ describe('ProjectPageComponent', () => {
 
     component = fixture.componentInstance;
     title = TestBed.inject(Title);
+    meta = TestBed.inject(Meta);
   });
 
   function renderSlug(slug: string): void {
@@ -196,5 +200,14 @@ describe('ProjectPageComponent', () => {
     renderSlug(PROJECTS[0].slug);
 
     expect(fixture.nativeElement.textContent).not.toContain('project-page works!');
+  });
+
+  it('should render title', () => {
+    const project = PROJECTS[0];
+    expect(title.getTitle()).toBe(`${project.name} | Danyaell Martinez`);
+
+    expect(meta.getTag("name='description'")?.content).toBe(project.summary);
+
+    expect(meta.getTag("property='og:image'")?.content).toBe(`${SITE_ORIGIN}${project.coverImage}`);
   });
 });

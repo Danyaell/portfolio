@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { Meta } from '@angular/platform-browser';
 
 import { SOCIAL_PROFILE_URLS } from '../layout/site-navigation/site-navigation';
-import { HOME_SEO, SITE_DESCRIPTION } from './seo.config';
+import { HOME_SEO, SITE_DESCRIPTION, SITE_ORIGIN } from './seo.config';
 import { SeoService } from './seo.service';
 
 describe('SeoService', () => {
@@ -102,6 +102,14 @@ describe('SeoService', () => {
     expect(meta.getTag("name='twitter:title'")?.content).toBe(HOME_SEO.title);
 
     expect(meta.getTag("name='twitter:description'")?.content).toBe(HOME_SEO.description);
+
+    expect(meta.getTag("name='twitter:card'")?.content).toBe('summary_large_image');
+
+    expect(meta.getTag("name='twitter:image'")?.content).toBe(
+      `${SITE_ORIGIN}${HOME_SEO.imagePath}`,
+    );
+
+    expect(meta.getTag("name='twitter:image:alt'")?.content).toBe(HOME_SEO.imageAlt);
   });
 
   it('should not duplicate metadata when applied more than once', () => {
@@ -117,39 +125,22 @@ describe('SeoService', () => {
     expect(document.head.querySelectorAll('script#person-structured-data')).toHaveLength(1);
   });
 
-  it('should remove stale domain-dependent metadata when the site origin is unknown', () => {
-    const canonical = document.createElement('link');
-
-    canonical.rel = 'canonical';
-    canonical.href = 'https://preview.example.com/';
-
-    document.head.appendChild(canonical);
-
-    meta.addTag(
-      {
-        property: 'og:url',
-        content: 'https://preview.example.com/',
-      },
-      true,
-    );
-
-    meta.addTag(
-      {
-        property: 'og:image',
-        content: 'https://preview.example.com/image.png',
-      },
-      true,
-    );
-
-    meta.addTag(
-      {
-        name: 'twitter:image',
-        content: 'https://preview.example.com/image.png',
-      },
-      true,
-    );
+  it('should replace stale absolute metadata with production URLs', () => {
+    // Crear tags de preview...
 
     service.updatePage(HOME_SEO, '/');
+
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      `${SITE_ORIGIN}/`,
+    );
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(`${SITE_ORIGIN}/`);
+
+    expect(meta.getTag("property='og:image'")?.content).toBe(`${SITE_ORIGIN}${HOME_SEO.imagePath}`);
+
+    expect(meta.getTag("name='twitter:image'")?.content).toBe(
+      `${SITE_ORIGIN}${HOME_SEO.imagePath}`,
+    );
   });
 
   it('should add Person structured data', () => {
@@ -182,11 +173,11 @@ describe('SeoService', () => {
     );
 
     /*
-     * These values should not be generated until
-     * the final domain exists.
+     * Person identifiers use the configured
+     * production origin.
      */
-    expect(person.url).toBe('https://danyaell-martinez.vercel.app');
-    expect(person['@id']).toBe('https://danyaell-martinez.vercel.app/#person');
+    expect(person.url).toBe(SITE_ORIGIN);
+    expect(person['@id']).toBe(`${SITE_ORIGIN}/#person`);
   });
 
   it('should remove Person structured data when the next page does not request it', () => {

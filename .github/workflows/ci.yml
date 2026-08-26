@@ -51,4 +51,18 @@ jobs:
         run: npm run verify:prerender
 
       - name: Verify prerendered article
-        run: test -f dist/portfolio/browser/blog/why-i-built-maverick-labs/index.html
+        run: |
+          test -f dist/portfolio/browser/blog/why-i-built-maverick-labs/index.html
+          test -f dist/portfolio/browser/index.html
+          test -f dist/portfolio/browser/projects/index.html
+          test -f dist/portfolio/browser/projects/maverick-labs/index.html
+          test -f dist/portfolio/browser/projects/portfolio/index.html
+          test -f dist/portfolio/browser/experience/index.html
+          test -f dist/portfolio/browser/blog/index.html
+          test -f dist/portfolio/browser/blog/why-i-built-maverick-labs/index.html
+          test -f dist/portfolio/browser/contact/index.html
+          test -f dist/portfolio/browser/robots.txt
+          test -f dist/portfolio/browser/sitemap.xml
+          test -f dist/portfolio/browser/favicon.ico
+          test -f dist/portfolio/browser/favicon.svg
+          test -f dist/portfolio/browser/apple-touch-icon.png

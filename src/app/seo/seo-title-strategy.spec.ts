@@ -5,7 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { provideRouter, type Routes, TitleStrategy } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 
-import { HOME_SEO, SITE_DESCRIPTION, SITE_NAME } from './seo.config';
+import { HOME_SEO, PROJECTS_SEO, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from './seo.config';
 import { SeoTitleStrategy } from './seo-title-strategy';
 
 @Component({
@@ -40,7 +40,10 @@ const TEST_ROUTES: Routes = [
   {
     path: 'projects',
     component: ProjectsTestPageComponent,
-    title: PROJECTS_TITLE,
+    title: PROJECTS_SEO.title,
+    data: {
+      seo: PROJECTS_SEO,
+    },
   },
   {
     path: 'untitled',
@@ -160,11 +163,11 @@ describe('SeoTitleStrategy', () => {
 
     expect(title.getTitle()).toBe(PROJECTS_TITLE);
 
-    expect(meta.getTag("name='description'")?.content).toBe(SITE_DESCRIPTION);
+    expect(meta.getTag("name='description'")?.content).toBe(PROJECTS_SEO.description);
 
     expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_TITLE);
 
-    expect(meta.getTag("property='og:description'")?.content).toBe(SITE_DESCRIPTION);
+    expect(meta.getTag("property='og:description'")?.content).toBe(PROJECTS_SEO.description);
 
     expect(meta.getTag("property='og:type'")?.content).toBe('website');
 
@@ -211,6 +214,14 @@ describe('SeoTitleStrategy', () => {
     await harness.navigateByUrl('/');
 
     expect(meta.getTag("property='og:title'")?.content).toBe(HOME_SEO.title);
+
+    expect(title.getTitle()).toBe(HOME_SEO.title);
+
+    expect(meta.getTag("name='description'")?.content).toBe(HOME_SEO.description);
+
+    expect(meta.getTag("property='og:title'")?.content).toBe(HOME_SEO.title);
+
+    expect(meta.getTag("property='og:url'")?.content).toBe(`${SITE_ORIGIN}/`);
   });
 
   it('should not duplicate metadata after multiple navigations', async () => {
