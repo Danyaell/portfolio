@@ -4,7 +4,11 @@ import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 
 const expectedTitle = 'Danyaell Martinez | Full-Stack Developer';
+const expectedOrigin = 'https://danyaell-martinez.vercel.app';
 
+const expectedHomeUrl = `${expectedOrigin}/`;
+
+const expectedSocialImageUrl = `${expectedOrigin}/images/social/danyaell-martinez-og.png`;
 const expectedDescription =
   'Full-stack developer based in Mexico City, building reliable web products with Java, Spring Boot, Angular, React, and TypeScript.';
 
@@ -61,8 +65,8 @@ assert.deepEqual(person.sameAs, [
   'https://www.linkedin.com/in/danyaell-martinez-ortiz',
 ]);
 
-assert.equal(person.url, undefined);
-assert.equal(person['@id'], undefined);
+assert.equal(person.url, expectedOrigin);
+assert.equal(person['@id'], `${expectedOrigin}/#person`);
 
 assert.equal(
   document.querySelector('meta[property="og:description"]')?.getAttribute('content'),
@@ -84,7 +88,10 @@ assert.equal(
   '#080b16',
 );
 
-assert.equal(document.querySelector('meta[name="twitter:image"]'), null);
+assert.equal(
+  document.querySelector('meta[name="twitter:image:alt"]')?.getAttribute('content'),
+  'Danyaell Martinez, Full-Stack developer building reliable web products.',
+);
 
 const mainLinks = Array.from(main.querySelectorAll('a[href]'), (link) => link.getAttribute('href'));
 
@@ -92,11 +99,32 @@ for (const path of ['/projects', '/experience', '/contact']) {
   assert.ok(mainLinks.includes(path), `Expected main link to ${path}`);
 }
 
-/*
- * These must remain absent until SITE_ORIGIN is known.
- */
-assert.equal(document.querySelector('link[rel="canonical"]'), null);
+assert.equal(
+  document.querySelector('link[rel="canonical"]')?.getAttribute('href'),
+  expectedHomeUrl,
+);
 
-assert.equal(document.querySelector('meta[property="og:url"]'), null);
+assert.equal(
+  document.querySelector('meta[property="og:url"]')?.getAttribute('content'),
+  expectedHomeUrl,
+);
 
-assert.equal(document.querySelector('meta[property="og:image"]'), null);
+assert.equal(
+  document.querySelector('meta[property="og:image"]')?.getAttribute('content'),
+  expectedSocialImageUrl,
+);
+
+assert.equal(
+  document.querySelector('meta[property="og:image:width"]')?.getAttribute('content'),
+  '1200',
+);
+
+assert.equal(
+  document.querySelector('meta[property="og:image:height"]')?.getAttribute('content'),
+  '630',
+);
+
+assert.equal(
+  document.querySelector('meta[property="og:image:alt"]')?.getAttribute('content'),
+  'Danyaell Martinez, Full-Stack developer building reliable web products.',
+);

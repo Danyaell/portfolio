@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Danyaell Martínez monogram</title>
+  <defs>
+    <linearGradient id="midnight" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12162D"/>
+      <stop offset="1" stop-color="#070914"/>
+    </linearGradient>
+    <radialGradient id="violet-glow" cx="0" cy="0" r="1" gradientTransform="translate(15 14) rotate(45) scale(48)">
+      <stop stop-color="#7C6CFF" stop-opacity="0.32"/>
+      <stop offset="0.7" stop-color="#7C6CFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="letter" x1="18" y1="13" x2="48" y2="51" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D9D5FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="url(#midnight)"/>
+  <rect width="64" height="64" rx="14" fill="url(#violet-glow)"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#7C6CFF" stroke-opacity="0.28" stroke-width="1.5"/>
+
+  <path
+    fill="url(#letter)"
+    fill-rule="evenodd"
+    d="M17 12.5h14.25C44.1 12.5 52 20.1 52 32S44.1 51.5 31.25 51.5H17v-39Zm9 8.25v22.5h5.25C38.9 43.25 43 39.1 43 32s-4.1-11.25-11.75-11.25H26Z"
+  />
+</svg>

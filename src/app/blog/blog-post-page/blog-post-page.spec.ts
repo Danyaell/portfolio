@@ -21,8 +21,11 @@ describe('BlogPostPageComponent', () => {
       throw new Error('BlogPostPageComponent test requires at least one generated post.');
     }
 
-    fixture.componentRef.setInput('slug', post.slug);
+    fixture.componentRef.setInput('slug', BLOG_POSTS[0].slug);
+
     fixture.detectChanges();
+
+    await fixture.whenStable();
   });
 
   it('should create', () => {

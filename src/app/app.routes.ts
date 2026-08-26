@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import { HOME_SEO } from './seo/seo.config';
+import { HOME_SEO, PROJECTS_SEO, EXPERIENCE_SEO, BLOG_SEO, CONTACT_SEO } from './seo/seo.config';
+import type { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -13,7 +13,10 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    title: 'Projects | Danyaell Martinez',
+    title: PROJECTS_SEO.title,
+    data: {
+      seo: PROJECTS_SEO,
+    },
     loadComponent: () =>
       import('./projects/projects-page/projects-page').then(
         (module) => module.ProjectsPageComponent,
@@ -26,7 +29,10 @@ export const routes: Routes = [
   },
   {
     path: 'experience',
-    title: 'Experience | Danyaell Martinez',
+    title: EXPERIENCE_SEO.title,
+    data: {
+      seo: EXPERIENCE_SEO,
+    },
     loadComponent: () =>
       import('./experience/experience-page/experience-page').then(
         (module) => module.ExperiencePageComponent,
@@ -34,7 +40,10 @@ export const routes: Routes = [
   },
   {
     path: 'blog',
-    title: 'Writing | Danyaell Martinez',
+    title: BLOG_SEO.title,
+    data: {
+      seo: BLOG_SEO,
+    },
     loadComponent: () =>
       import('./blog/blog-page/blog-page').then((module) => module.BlogPageComponent),
   },
@@ -45,12 +54,16 @@ export const routes: Routes = [
   },
   {
     path: 'contact',
-    title: 'Contact | Danyaell Martinez',
+    title: CONTACT_SEO.title,
+    data: {
+      seo: CONTACT_SEO,
+    },
     loadComponent: () =>
       import('./contact/contact-page/contact-page').then((module) => module.ContactPageComponent),
   },
   {
     path: '**',
+    title: 'Page not found | Danyaell Martinez',
     loadComponent: () =>
       import('./not-found/not-found-page/not-found-page').then(
         (module) => module.NotFoundPageComponent,

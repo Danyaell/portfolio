@@ -5,7 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { provideRouter, type Routes, TitleStrategy } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 
-import { HOME_SEO, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from './seo.config';
+import { HOME_SEO, SITE_DESCRIPTION, SITE_NAME } from './seo.config';
 import { SeoTitleStrategy } from './seo-title-strategy';
 
 @Component({
@@ -229,23 +229,5 @@ describe('SeoTitleStrategy', () => {
     expect(document.head.querySelectorAll('meta[name="twitter:title"]')).toHaveLength(1);
 
     expect(document.head.querySelectorAll('script#person-structured-data')).toHaveLength(1);
-  });
-
-  it('should omit absolute URL metadata until the final origin is configured', async () => {
-    expect(SITE_ORIGIN).toBeNull();
-
-    const harness = await RouterTestingHarness.create();
-
-    await harness.navigateByUrl('/');
-
-    expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
-
-    expect(meta.getTag("property='og:url'")).toBeNull();
-
-    expect(meta.getTag("property='og:image'")).toBeNull();
-
-    expect(meta.getTag("name='twitter:image'")).toBeNull();
-
-    expect(meta.getTag("name='twitter:card'")?.content).toBe('summary');
   });
 });
