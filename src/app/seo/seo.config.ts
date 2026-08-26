@@ -4,6 +4,8 @@ export interface PageSeoMetadata {
   readonly type: 'website' | 'article' | 'profile';
   readonly imagePath?: string;
   readonly imageAlt?: string;
+  readonly imageWidth?: number;
+  readonly imageHeight?: number;
   readonly structuredData?: 'person';
 }
 
@@ -22,6 +24,8 @@ export const HOME_SEO = {
   type: 'profile',
   imagePath: '/images/social/danyaell-martinez-og.png',
   imageAlt: 'Danyaell Martinez, Full-Stack developer building reliable web products.',
+  imageWidth: 1200,
+  imageHeight: 630,
   structuredData: 'person',
 } as const satisfies PageSeoMetadata;
 

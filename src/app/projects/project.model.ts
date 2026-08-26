@@ -12,6 +12,8 @@ export interface PortfolioProject {
   readonly highlights: readonly string[];
   readonly featured: boolean;
   readonly coverImage: string;
+  readonly coverImageWidth: number;
+  readonly coverImageHeight: number;
   readonly coverImageAlt: string;
   readonly liveUrl?: string;
   readonly repositories: readonly ProjectRepository[];

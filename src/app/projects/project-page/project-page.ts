@@ -47,6 +47,8 @@ export class ProjectPageComponent {
           description: project.summary,
           type: 'website',
           imagePath: project.coverImage,
+          imageWidth: project.coverImageWidth,
+          imageHeight: project.coverImageHeight,
           imageAlt: project.coverImageAlt,
         },
         routePath,

@@ -43,7 +43,7 @@ describe('BlogPostPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the post title', () => {
+  it('should apply article-specific metadata', () => {
     expect(title.getTitle()).toBe(`${post.title} | Danyaell Martinez`);
 
     expect(meta.getTag("name='description'")?.content).toBe(post.summary);

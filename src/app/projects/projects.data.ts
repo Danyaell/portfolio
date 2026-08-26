@@ -15,6 +15,8 @@ export const PROJECTS = [
     ],
     featured: true,
     coverImage: '/images/projects/maverick-labs.webp',
+    coverImageWidth: 1600,
+    coverImageHeight: 1000,
     coverImageAlt: 'Maverick Labs route builder.',
     liveUrl: 'https://maverick-labs-fe.vercel.app',
     repositories: [
@@ -38,6 +40,8 @@ export const PROJECTS = [
     highlights: ['Markdown-to-SSG content pipeline.', 'GitHub Actions validation.'],
     featured: true,
     coverImage: '/images/projects/portfolio.webp',
+    coverImageWidth: 1600,
+    coverImageHeight: 1000,
     coverImageAlt: 'Danyaell Martinez portfolio home page using the Midnight Violet design system.',
     repositories: [
       {

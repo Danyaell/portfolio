@@ -26,8 +26,6 @@ class ProjectsTestPageComponent {}
 })
 class UntitledTestPageComponent {}
 
-const PROJECTS_TITLE = 'Projects | Danyaell Martinez';
-
 const TEST_ROUTES: Routes = [
   {
     path: '',
@@ -161,11 +159,11 @@ describe('SeoTitleStrategy', () => {
 
     await harness.navigateByUrl('/projects');
 
-    expect(title.getTitle()).toBe(PROJECTS_TITLE);
+    expect(title.getTitle()).toBe(PROJECTS_SEO.title);
 
     expect(meta.getTag("name='description'")?.content).toBe(PROJECTS_SEO.description);
 
-    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_TITLE);
+    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_SEO.title);
 
     expect(meta.getTag("property='og:description'")?.content).toBe(PROJECTS_SEO.description);
 
@@ -199,7 +197,7 @@ describe('SeoTitleStrategy', () => {
 
     expect(document.head.querySelector('script#person-structured-data')).toBeNull();
 
-    expect(title.getTitle()).toBe(PROJECTS_TITLE);
+    expect(title.getTitle()).toBe(PROJECTS_SEO.title);
   });
 
   it('should update metadata when navigating between routes', async () => {
@@ -211,7 +209,7 @@ describe('SeoTitleStrategy', () => {
 
     await harness.navigateByUrl('/projects');
 
-    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_TITLE);
+    expect(meta.getTag("property='og:title'")?.content).toBe(PROJECTS_SEO.title);
 
     await harness.navigateByUrl('/');
 
