@@ -107,4 +107,20 @@ describe('ProjectsPageComponent', () => {
     expect(text).not.toContain('projects-page works!');
     expect(text).not.toContain('Coming soon');
   });
+
+  it('should prioritize only the first project cover', () => {
+    const images = Array.from(
+      fixture.nativeElement.querySelectorAll('dml-project-card img'),
+    ) as HTMLImageElement[];
+
+    expect(images).toHaveLength(PROJECTS.length);
+
+    expect(images[0]?.getAttribute('fetchpriority')).toBe('high');
+    expect(images[0]?.getAttribute('loading')).toBe('eager');
+
+    for (const image of images.slice(1)) {
+      expect(image.getAttribute('fetchpriority')).toBe('auto');
+      expect(image.getAttribute('loading')).toBe('lazy');
+    }
+  });
 });
