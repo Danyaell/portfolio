@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -5,7 +6,7 @@ import type { PortfolioProject } from '../project.model';
 
 @Component({
   selector: 'dml-project-card',
-  imports: [RouterLink],
+  imports: [NgOptimizedImage, RouterLink],
   templateUrl: './project-card.html',
   host: {
     class: 'block h-full',
@@ -13,4 +14,5 @@ import type { PortfolioProject } from '../project.model';
 })
 export class ProjectCardComponent {
   readonly project = input.required<PortfolioProject>();
+  readonly imagePriority = input(false);
 }

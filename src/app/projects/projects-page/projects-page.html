@@ -14,9 +14,9 @@
         <h2 id="selected-work-title" class="text-heading text-ink">Selected work</h2>
 
         <ul class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          @for (project of projects; track project.slug) {
+          @for (project of projects; track project.slug; let isFirst = $first) {
             <li class="min-w-0">
-              <dml-project-card [project]="project" />
+              <dml-project-card [project]="project" [imagePriority]="isFirst" />
             </li>
           }
         </ul>

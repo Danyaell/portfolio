@@ -51,4 +51,22 @@ describe('HomeFeaturedProjectsComponent', () => {
 
     expect(heading).not.toBeNull();
   });
+
+  it('should not prioritize project images below the fold', () => {
+    const images = Array.from(fixture.nativeElement.querySelectorAll('img')) as HTMLImageElement[];
+
+    for (const image of images) {
+      expect(image.getAttribute('fetchpriority')).not.toBe('high');
+    }
+  });
+
+  it('should prioritize only the first project image', () => {
+    const images = Array.from(fixture.nativeElement.querySelectorAll('img')) as HTMLImageElement[];
+
+    expect(images[0]?.getAttribute('fetchpriority')).toBe('auto');
+
+    for (const image of images.slice(1)) {
+      expect(image.getAttribute('fetchpriority')).not.toBe('high');
+    }
+  });
 });

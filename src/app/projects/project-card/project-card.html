@@ -3,12 +3,11 @@
 >
   <div class="aspect-16/10 overflow-hidden border-b border-border bg-surface-raised">
     <img
-      [src]="project().coverImage"
+      [ngSrc]="project().coverImage"
       [alt]="project().coverImageAlt"
+      [priority]="imagePriority()"
       width="1600"
       height="1000"
-      loading="lazy"
-      decoding="async"
       class="h-full w-full object-cover"
     />
   </div>
