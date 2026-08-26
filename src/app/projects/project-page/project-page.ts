@@ -1,13 +1,13 @@
 import { Component, computed, effect, inject, input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-
+import { NgOptimizedImage } from '@angular/common';
 import type { PortfolioProject } from '../project.model';
 import { PROJECTS } from '../projects.data';
 
 @Component({
   selector: 'dml-project-page',
-  imports: [RouterLink],
+  imports: [NgOptimizedImage, RouterLink],
   templateUrl: './project-page.html',
   host: {
     class: 'block w-full',

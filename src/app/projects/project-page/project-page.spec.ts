@@ -65,6 +65,15 @@ describe('ProjectPageComponent', () => {
     }
   });
 
+  it('should prioritize the project cover image', () => {
+    renderSlug(PROJECTS[0].slug);
+
+    const image: HTMLImageElement | null = fixture.nativeElement.querySelector('img');
+
+    expect(image?.getAttribute('fetchpriority')).toBe('high');
+    expect(image?.getAttribute('loading')).toBe('eager');
+  });
+
   it('should render stack and highlights from the project data', () => {
     const project = PROJECTS[0];
 

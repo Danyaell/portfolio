@@ -102,4 +102,24 @@ describe('ProjectCardComponent', () => {
 
     await expectNoAxeViolations(fixture.nativeElement);
   });
+
+  it('should lazy-load the image by default', () => {
+    const element = renderProject();
+    const image: HTMLImageElement | null = element.querySelector('img');
+
+    expect(image?.getAttribute('loading')).toBe('lazy');
+    expect(image?.getAttribute('fetchpriority')).toBe('auto');
+  });
+
+  it('should prioritize the image when requested', () => {
+    fixture.componentRef.setInput('project', PROJECT);
+    fixture.componentRef.setInput('imagePriority', true);
+
+    fixture.detectChanges();
+
+    const image: HTMLImageElement | null = fixture.nativeElement.querySelector('img');
+
+    expect(image?.getAttribute('loading')).toBe('eager');
+    expect(image?.getAttribute('fetchpriority')).toBe('high');
+  });
 });

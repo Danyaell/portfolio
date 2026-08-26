@@ -51,4 +51,12 @@ describe('HomeFeaturedProjectsComponent', () => {
 
     expect(heading).not.toBeNull();
   });
+
+  it('should not prioritize project images below the fold', () => {
+    const images = Array.from(fixture.nativeElement.querySelectorAll('img')) as HTMLImageElement[];
+
+    for (const image of images) {
+      expect(image.getAttribute('fetchpriority')).not.toBe('high');
+    }
+  });
 });
