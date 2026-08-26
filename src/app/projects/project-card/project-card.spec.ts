@@ -14,6 +14,8 @@ const PROJECT: PortfolioProject = {
   highlights: ['Accessible interface.', 'Automated validation.'],
   featured: true,
   coverImage: '/images/projects/example.webp',
+  coverImageWidth: 1600,
+  coverImageHeight: 1000,
   coverImageAlt: 'Example project interface.',
   repositories: [
     {
