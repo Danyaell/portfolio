@@ -16,14 +16,14 @@ This repository contains the source code and content for my personal engineering
 
 The application is intentionally content-driven and mostly static:
 
-* Projects are stored in a shared, typed, readonly data source.
-* Professional experience is maintained in a shared experience data source.
-* Blog posts are written locally in Markdown and converted into typed TypeScript data at build time.
-* Angular prerenders every public route into HTML.
-* Route components are lazy-loaded.
-* No runtime CMS, database, GitHub API, or external content service is required.
-* SEO metadata is generated during prerendering.
-* GitHub Actions validates content, formatting, tests, accessibility behavior, production builds, prerendered HTML, routes, and required assets.
+- Projects are stored in a shared, typed, readonly data source.
+- Professional experience is maintained in a shared experience data source.
+- Blog posts are written locally in Markdown and converted into typed TypeScript data at build time.
+- Angular prerenders every public route into HTML.
+- Route components are lazy-loaded.
+- No runtime CMS, database, GitHub API, or external content service is required.
+- SEO metadata is generated during prerendering.
+- GitHub Actions validates content, formatting, tests, accessibility behavior, production builds, prerendered HTML, routes, and required assets.
 
 ## Current features
 
@@ -31,13 +31,13 @@ The application is intentionally content-driven and mostly static:
 
 The Home page provides a compact overview of the complete portfolio:
 
-* Hero and primary value proposition.
-* Professional evidence strip.
-* Featured projects derived from the shared project collection.
-* Engineering capabilities across frontend, backend, and delivery.
-* Selected professional experience.
-* Latest published writing.
-* Contact call to action.
+- Hero and primary value proposition.
+- Professional evidence strip.
+- Featured projects derived from the shared project collection.
+- Engineering capabilities across frontend, backend, and delivery.
+- Selected professional experience.
+- Latest published writing.
+- Contact call to action.
 
 Home does not duplicate project, experience, or article content. Its sections derive their information from the same sources used by their corresponding full pages.
 
@@ -45,30 +45,30 @@ Home does not duplicate project, experience, or article content. Its sections de
 
 The Projects section includes:
 
-* A complete project index.
-* Reusable project cards.
-* Project covers with explicit intrinsic dimensions.
-* Roles, summaries, technology stacks, and engineering highlights.
-* Live demo and repository actions where available.
-* Statically generated project walkthrough routes.
-* Project-specific titles and social metadata.
+- A complete project index.
+- Reusable project cards.
+- Project covers with explicit intrinsic dimensions.
+- Roles, summaries, technology stacks, and engineering highlights.
+- Live demo and repository actions where available.
+- Statically generated project walkthrough routes.
+- Project-specific titles and social metadata.
 
 Current project data includes:
 
-* Maverick Labs.
-* This portfolio.
+- Maverick Labs.
+- This portfolio.
 
 ### Experience
 
 The Experience page is generated from a typed, readonly collection and includes:
 
-* Company and client information.
-* Engagement type.
-* Role and time period.
-* Location.
-* Contextual summaries.
-* Verifiable achievements.
-* Technologies used in each experience.
+- Company and client information.
+- Engagement type.
+- Role and time period.
+- Location.
+- Contextual summaries.
+- Verifiable achievements.
+- Technologies used in each experience.
 
 The same collection powers the compact experience preview on Home.
 
@@ -230,20 +230,20 @@ src/app/seo/
 
 The implementation includes:
 
-* Page-specific document titles.
-* Meta descriptions.
-* Canonical URLs.
-* Open Graph titles, descriptions, URLs, types, images, dimensions, and alternative text.
-* Twitter card metadata.
-* Theme color.
-* Person JSON-LD on Home.
-* GitHub and LinkedIn profiles through `sameAs`.
-* Dynamic metadata for project and article pages.
-* Metadata cleanup when navigating between pages.
-* `robots.txt`.
-* XML sitemap.
-* Production favicon assets.
-* Prerender verification for essential Home metadata.
+- Page-specific document titles.
+- Meta descriptions.
+- Canonical URLs.
+- Open Graph titles, descriptions, URLs, types, images, dimensions, and alternative text.
+- Twitter card metadata.
+- Theme color.
+- Person JSON-LD on Home.
+- GitHub and LinkedIn profiles through `sameAs`.
+- Dynamic metadata for project and article pages.
+- Metadata cleanup when navigating between pages.
+- `robots.txt`.
+- XML sitemap.
+- Production favicon assets.
+- Prerender verification for essential Home metadata.
 
 Static routes declare their metadata in `app.routes.ts`. Dynamic project and article pages derive their metadata from their corresponding shared content sources.
 
@@ -272,28 +272,28 @@ Accessibility is treated as a functional requirement rather than an optional vis
 
 The application includes:
 
-* Semantic page landmarks and heading hierarchies.
-* A keyboard-accessible skip link.
-* Visible `:focus-visible` states.
-* Minimum interactive target heights.
-* Responsive navigation with accessible state communication.
-* Focus movement to the main content after route navigation.
-* Descriptive image alternative text.
-* Screen-reader notices for links that open new tabs.
-* Semantic lists for projects, technologies, achievements, and navigation.
-* Support for forced-color environments.
-* Reduced-motion behavior through `prefers-reduced-motion`.
-* Automated axe checks for the application shell, responsive header, Home page, featured project cards, and contact CTA.
+- Semantic page landmarks and heading hierarchies.
+- A keyboard-accessible skip link.
+- Visible `:focus-visible` states.
+- Minimum interactive target heights.
+- Responsive navigation with accessible state communication.
+- Focus movement to the main content after route navigation.
+- Descriptive image alternative text.
+- Screen-reader notices for links that open new tabs.
+- Semantic lists for projects, technologies, achievements, and navigation.
+- Support for forced-color environments.
+- Reduced-motion behavior through `prefers-reduced-motion`.
+- Automated axe checks for the application shell, responsive header, Home page, featured project cards, and contact CTA.
 
 Automated checks complement manual verification with:
 
-* Keyboard-only navigation.
-* 200% browser zoom.
-* Narrow viewports.
-* Forced colors.
-* Reduced motion.
-* Heading-order inspection.
-* Contrast and interactive-state review.
+- Keyboard-only navigation.
+- 200% browser zoom.
+- Narrow viewports.
+- Forced colors.
+- Reduced motion.
+- Heading-order inspection.
+- Contrast and interactive-state review.
 
 ## Design system
 
@@ -301,15 +301,15 @@ The visual system is defined through semantic CSS custom properties in `src/styl
 
 The design uses the Midnight Violet theme:
 
-* Dark canvas and layered surfaces.
-* Violet and blue brand accents.
-* Semantic ink, border, action, feedback, and focus colors.
-* Fluid typography.
-* Responsive layout gutters.
-* Shared card and button radii.
-* Shared elevation tokens.
-* Short UI transitions.
-* A reusable `site-container` layout utility.
+- Dark canvas and layered surfaces.
+- Violet and blue brand accents.
+- Semantic ink, border, action, feedback, and focus colors.
+- Fluid typography.
+- Responsive layout gutters.
+- Shared card and button radii.
+- Shared elevation tokens.
+- Short UI transitions.
+- A reusable `site-container` layout utility.
 
 Tailwind consumes these semantic values through `@theme`, allowing templates to use utilities such as:
 
@@ -332,11 +332,11 @@ The site uses the normal Inter Variable font with weights from `100` to `900`.
 
 The font:
 
-* Is self-hosted.
-* Is preloaded from `src/index.html`.
-* Uses `font-display: swap`.
-* Does not load a separate italic file.
-* Falls back to system UI fonts if unavailable.
+- Is self-hosted.
+- Is preloaded from `src/index.html`.
+- Uses `font-display: swap`.
+- Does not load a separate italic file.
+- Falls back to system UI fonts if unavailable.
 
 ## Performance decisions
 
@@ -344,21 +344,21 @@ The site is intentionally lightweight and mostly static.
 
 Current performance-oriented decisions include:
 
-* Lazy-loaded route components.
-* Static generation for every known route.
-* No runtime content fetching.
-* No runtime GitHub API.
-* No animation library.
-* No sliders or carousels.
-* No initial IntersectionObserver-based effects.
-* `NgOptimizedImage` for project images.
-* Explicit image dimensions to reduce layout shifts.
-* WebP project covers.
-* A single priority image only where the image is visible on initial load.
-* Output hashing for production assets.
-* Angular bundle budgets.
-* Reduced motion support.
-* A pointer-based ambient effect that only runs for precise pointer devices when reduced motion is not requested.
+- Lazy-loaded route components.
+- Static generation for every known route.
+- No runtime content fetching.
+- No runtime GitHub API.
+- No animation library.
+- No sliders or carousels.
+- No initial IntersectionObserver-based effects.
+- `NgOptimizedImage` for project images.
+- Explicit image dimensions to reduce layout shifts.
+- WebP project covers.
+- A single priority image only where the image is visible on initial load.
+- Output hashing for production assets.
+- Angular bundle budgets.
+- Reduced motion support.
+- A pointer-based ambient effect that only runs for precise pointer devices when reduced motion is not requested.
 
 Production bundle budgets are configured as:
 
@@ -371,8 +371,8 @@ Production bundle budgets are configured as:
 
 Use the versions declared by the repository:
 
-* Node.js `24.15.0`.
-* npm `11.16.0`.
+- Node.js `24.15.0`.
+- npm `11.16.0`.
 
 The supported Node range is:
 
@@ -488,7 +488,7 @@ To add a project:
 The Home page automatically selects projects where:
 
 ```ts
-project.featured === true
+project.featured === true;
 ```
 
 The Projects page renders the complete collection in its declared order.
@@ -510,10 +510,7 @@ interface ProfessionalExperience {
   readonly company: string;
   readonly client?: string;
   readonly engagementType?:
-    | 'Employment'
-    | 'Social Service'
-    | 'Institutional Project'
-    | 'Internship';
+    'Employment' | 'Social Service' | 'Institutional Project' | 'Internship';
   readonly role: string;
   readonly period: string;
   readonly location?: string;
@@ -585,9 +582,9 @@ draft
 
 Slug requirements:
 
-* Lowercase letters and numbers.
-* Words separated with hyphens.
-* No spaces, underscores, uppercase characters, or duplicate slugs.
+- Lowercase letters and numbers.
+- Words separated with hyphens.
+- No spaces, underscores, uppercase characters, or duplicate slugs.
 
 Example:
 
@@ -632,22 +629,22 @@ npm run validate
 
 The test suite covers:
 
-* Component creation.
-* User-facing content and behavior.
-* Shared-data rendering.
-* Route composition.
-* Project and experience ordering.
-* Internal and external links.
-* Optional-link behavior.
-* Heading hierarchy and semantic associations.
-* Responsive-navigation state.
-* Focus management after navigation.
-* SEO metadata creation, updates, cleanup, and deduplication.
-* Dynamic project and article metadata.
-* Structured data.
-* Accessibility through axe-core.
-* Placeholder-content removal.
-* Prerendered Home content and metadata.
+- Component creation.
+- User-facing content and behavior.
+- Shared-data rendering.
+- Route composition.
+- Project and experience ordering.
+- Internal and external links.
+- Optional-link behavior.
+- Heading hierarchy and semantic associations.
+- Responsive-navigation state.
+- Focus management after navigation.
+- SEO metadata creation, updates, cleanup, and deduplication.
+- Dynamic project and article metadata.
+- Structured data.
+- Accessibility through axe-core.
+- Placeholder-content removal.
+- Prerendered Home content and metadata.
 
 Run tests interactively:
 
@@ -689,8 +686,8 @@ git diff --check
 
 GitHub Actions runs on:
 
-* Every pull request.
-* Every push to `main`.
+- Every pull request.
+- Every push to `main`.
 
 The CI workflow:
 
@@ -764,59 +761,59 @@ No runtime environment variables are currently required.
 
 After deploying, verify:
 
-* The Home page loads directly.
-* Every route loads after a full browser refresh.
-* Project and article detail routes resolve correctly.
-* Unknown URLs return the expected `404` response.
-* `robots.txt` and `sitemap.xml` are publicly accessible.
-* Favicon and Apple Touch Icon assets resolve.
-* Canonical and Open Graph URLs use the production domain.
-* The social image renders correctly.
-* Keyboard navigation and visible focus remain available.
-* No route causes horizontal overflow.
+- The Home page loads directly.
+- Every route loads after a full browser refresh.
+- Project and article detail routes resolve correctly.
+- Unknown URLs return the expected `404` response.
+- `robots.txt` and `sitemap.xml` are publicly accessible.
+- Favicon and Apple Touch Icon assets resolve.
+- Canonical and Open Graph URLs use the production domain.
+- The social image renders correctly.
+- Keyboard navigation and visible focus remain available.
+- No route causes horizontal overflow.
 
 ## Development guidelines
 
 When contributing to the repository:
 
-* Keep TypeScript strict.
-* Use standalone Angular components.
-* Use Angular's native template control flow.
-* Prefer `input()`, `output()`, and signals for reactive component state.
-* Do not introduce signals for static readonly content.
-* Keep project and experience data independent from presentation.
-* Use `NgOptimizedImage` for static images.
-* Preserve semantic HTML and accessible labels.
-* Keep route components lazy-loaded.
-* Avoid runtime fetching for build-time portfolio content.
-* Add or update tests for user-facing behavior.
-* Run `npm run validate` before opening a pull request.
+- Keep TypeScript strict.
+- Use standalone Angular components.
+- Use Angular's native template control flow.
+- Prefer `input()`, `output()`, and signals for reactive component state.
+- Do not introduce signals for static readonly content.
+- Keep project and experience data independent from presentation.
+- Use `NgOptimizedImage` for static images.
+- Preserve semantic HTML and accessible labels.
+- Keep route components lazy-loaded.
+- Avoid runtime fetching for build-time portfolio content.
+- Add or update tests for user-facing behavior.
+- Run `npm run validate` before opening a pull request.
 
 ## Release checklist
 
 Before releasing a production version:
 
-* [ ] `npm ci` completes successfully.
-* [ ] `npm run validate` succeeds.
-* [ ] GitHub Actions is green.
-* [ ] Vercel preview deployment is ready.
-* [ ] Every prerendered route loads directly.
-* [ ] Unknown URLs return `404`.
-* [ ] Project, experience, and blog content is current.
-* [ ] SEO metadata uses the final production domain.
-* [ ] The sitemap contains every public route.
-* [ ] Social previews use the expected image and copy.
-* [ ] Keyboard and responsive behavior have been manually verified.
-* [ ] Production deployment is smoke-tested after merge.
+- [ ] `npm ci` completes successfully.
+- [ ] `npm run validate` succeeds.
+- [ ] GitHub Actions is green.
+- [ ] Vercel preview deployment is ready.
+- [ ] Every prerendered route loads directly.
+- [ ] Unknown URLs return `404`.
+- [ ] Project, experience, and blog content is current.
+- [ ] SEO metadata uses the final production domain.
+- [ ] The sitemap contains every public route.
+- [ ] Social previews use the expected image and copy.
+- [ ] Keyboard and responsive behavior have been manually verified.
+- [ ] Production deployment is smoke-tested after merge.
 
 ## Author
 
 **Danyaell Martinez Ortiz**
 Full-Stack Developer based in Mexico City.
 
-* [Portfolio](https://danyaell-martinez.vercel.app)
-* [GitHub](https://github.com/Danyaell)
-* [LinkedIn](https://www.linkedin.com/in/danyaell-martinez-ortiz)
+- [Portfolio](https://danyaell-martinez.vercel.app)
+- [GitHub](https://github.com/Danyaell)
+- [LinkedIn](https://www.linkedin.com/in/danyaell-martinez-ortiz)
 
 ## License
 
